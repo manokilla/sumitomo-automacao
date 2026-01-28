@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Atividades - Automação | Diogo Moura | Semana 26-31 Janeiro 2026</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        .header {
+            background: linear-gradient(90deg, #1F4E79 0%, #2E75B6 100%);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            height: 50px;
+            filter: brightness(0) invert(1);
+        }
+
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .header-info {
+            text-align: right;
+            font-size: 14px;
+        }
+
+        .header-info .name {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .header-info .period {
+            opacity: 0.9;
+            margin-top: 4px;
+        }
+
+        .container {
+            padding: 25px 40px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.6;
+            margin-bottom: 15px;
+            margin-top: 10px;
+        }
+
+        .cards-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .card {
+            background: linear-gradient(145deg, #1e3a5f 0%, #1a2d47 100%);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+        }
+
+        .card-icon {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .card-value {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .card-label {
+            font-size: 12px;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card.total .card-value { color: #5DADE2; }
+        .card.concluido .card-value { color: #58D68D; }
+        .card.andamento .card-value { color: #F4D03F; }
+        .card.atrasado .card-value { color: #EC7063; }
+        .card.prazo .card-value { color: #58D68D; }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 25px;
+        }
+
+        @media (max-width: 1100px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .left-content {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .right-content {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .charts-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 900px) {
+            .charts-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .chart-container {
+            background: linear-gradient(145deg, #1e3a5f 0%, #1a2d47 100%);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .chart-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .table-container {
+            background: linear-gradient(145deg, #1e3a5f 0%, #1a2d47 100%);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
+            overflow-x: auto;
+        }
+
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            text-align: left;
+            padding: 12px 10px;
+            background: rgba(46, 117, 182, 0.3);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+        }
+
+        td {
+            padding: 12px 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 13px;
+        }
+
+        tr:hover {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .status-badge {
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .status-concluido {
+            background: rgba(88, 214, 141, 0.2);
+            color: #58D68D;
+        }
+
+        .status-andamento {
+            background: rgba(244, 208, 63, 0.2);
+            color: #F4D03F;
+        }
+
+        .sla-indicator {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .sla-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .sla-ok { background: #58D68D; }
+        .sla-atencao { background: #F4D03F; }
+        .sla-atrasado { background: #EC7063; }
+
+        .sla-text {
+            font-size: 11px;
+        }
+
+        .sla-ok-text { color: #58D68D; }
+        .sla-atencao-text { color: #F4D03F; }
+        .sla-atrasado-text { color: #EC7063; }
+
+        /* Calendário */
+        .calendar-container {
+            background: linear-gradient(145deg, #1e3a5f 0%, #1a2d47 100%);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .calendar-nav {
+            display: flex;
+            gap: 10px;
+        }
+
+        .calendar-nav button {
+            background: rgba(46, 117, 182, 0.5);
+            border: none;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .calendar-nav button:hover {
+            background: rgba(46, 117, 182, 0.8);
+        }
+
+        .calendar-month {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+
+        .calendar-weekday {
+            text-align: center;
+            font-size: 11px;
+            opacity: 0.6;
+            padding: 8px 0;
+            text-transform: uppercase;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .calendar-day:hover {
+            background: rgba(46, 117, 182, 0.3);
+        }
+
+        .calendar-day.empty {
+            cursor: default;
+        }
+
+        .calendar-day.has-activity {
+            background: rgba(46, 117, 182, 0.4);
+            font-weight: 600;
+        }
+
+        .calendar-day.has-activity::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            width: 6px;
+            height: 6px;
+            background: #58D68D;
+            border-radius: 50%;
+        }
+
+        .calendar-day.selected {
+            background: #2E75B6;
+            color: white;
+        }
+
+        .calendar-day.today {
+            border: 2px solid #5DADE2;
+        }
+
+        .day-detail {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            min-height: 100px;
+        }
+
+        .day-detail-title {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #5DADE2;
+        }
+
+        .day-activity {
+            background: rgba(255,255,255,0.05);
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            font-size: 12px;
+        }
+
+        .day-activity-area {
+            font-size: 10px;
+            opacity: 0.7;
+            margin-bottom: 4px;
+        }
+
+        .no-activity {
+            opacity: 0.5;
+            font-size: 12px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Ranking de Áreas */
+        .ranking-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .ranking-item:last-child {
+            border-bottom: none;
+        }
+
+        .ranking-position {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: rgba(46, 117, 182, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 12px;
+            margin-right: 12px;
+        }
+
+        .ranking-area {
+            flex: 1;
+            font-size: 13px;
+        }
+
+        .ranking-area-sub {
+            font-size: 10px;
+            opacity: 0.6;
+        }
+
+        .ranking-count {
+            background: linear-gradient(90deg, #2E75B6 0%, #5DADE2 100%);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            opacity: 0.4;
+            font-size: 11px;
+        }
+
+        /* Área/Planta com tooltip */
+        .area-tag {
+            display: inline-block;
+            position: relative;
+        }
+
+        .area-tag:hover .area-tooltip {
+            display: block;
+        }
+
+        .area-tooltip {
+            display: none;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1a2d47;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            white-space: nowrap;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-left">
+            <svg class="logo" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+                <!-- Logo Sumitomo simplificado -->
+                <g fill="currentColor">
+                    <path d="M10 30 L25 15 L40 30 L25 45 Z" fill="#E31937"/>
+                    <path d="M25 20 L35 30 L25 40 L15 30 Z" fill="#1a1a2e"/>
+                    <text x="50" y="28" font-family="Arial Black" font-size="14" font-weight="bold">SUMITOMO</text>
+                    <text x="50" y="42" font-family="Arial Black" font-size="14" font-weight="bold">CHEMICAL</text>
+                </g>
+            </svg>
+            <h1>Controle de Atividades - Automação</h1>
+        </div>
+        <div class="header-info">
+            <div class="name">Diogo Moura</div>
+            <div class="period">Semana 26 a 31 de Janeiro de 2026</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Cards de Indicadores -->
+        <div class="section-title">Indicadores da Semana</div>
+        <div class="cards-row">
+            <div class="card total">
+                <div class="card-icon">📋</div>
+                <div class="card-value">7</div>
+                <div class="card-label">Total de Atividades</div>
+            </div>
+            <div class="card concluido">
+                <div class="card-icon">✅</div>
+                <div class="card-value">3</div>
+                <div class="card-label">Concluídas</div>
+            </div>
+            <div class="card andamento">
+                <div class="card-icon">🔄</div>
+                <div class="card-value">4</div>
+                <div class="card-label">Em Andamento</div>
+            </div>
+            <div class="card atrasado">
+                <div class="card-icon">⚠️</div>
+                <div class="card-value">0</div>
+                <div class="card-label">Fora do SLA</div>
+            </div>
+            <div class="card prazo">
+                <div class="card-icon">📊</div>
+                <div class="card-value">100%</div>
+                <div class="card-label">Taxa no Prazo</div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="left-content">
+                <!-- Gráficos -->
+                <div class="charts-row">
+                    <div class="chart-container">
+                        <div class="chart-title">📊 Status das Atividades</div>
+                        <canvas id="statusChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <div class="chart-title">🏭 Atividades por Área</div>
+                        <canvas id="areaChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Tabela de Atividades -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <div class="chart-title">📝 Detalhamento de Atividades</div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Área / Planta</th>
+                                <th>Atividade</th>
+                                <th>Tipo</th>
+                                <th>Status</th>
+                                <th>SLA</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>26/01</td>
+                                <td>
+                                    <span class="area-tag">
+                                        EW - Processo
+                                        <span class="area-tooltip">Emulsão Óleo em Água - Área de Processo</span>
+                                    </span>
+                                </td>
+                                <td>Liberação receita Tempest via CLP</td>
+                                <td>Suporte Técnico</td>
+                                <td><span class="status-badge status-concluido">Concluído</span></td>
+                                <td>
+                                    <div class="sla-indicator">
+                                        <div class="sla-dot sla-ok"></div>
+                                        <span class="sla-text sla-ok-text">OK</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>26/01</td>
+                                <td>
+                                    <span class="area-tag">
+                                        EC - Envase
+                                        <span class="area-tooltip">Emulsão Concentrada - Encaixotadora</span>
+                                    </span>
+                                </td>
+                                <td>Acompanhamento equipe Provitec - ajustes IHM</td>
+                                <td>Acompanhamento</td>
+                                <td><span class="status-badge status-andamento">Em andamento</span></td>
+                                <td>
+                                    <div class="sla-indicator">
+                                        <div class="sla-dot sla-ok"></div>
+                                        <span class="sla-text sla-ok-text">OK</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>26/01</td>
+                                <td>
+                                    <span class="area-tag">
+                                        Estação de Trabalho
+                                        <span class="area-tooltip">Ambiente de Desenvolvimento</span>
+                                    </span>
+                                </td>
+                                <td>Instalação TIA Portal V18</td>
+                                <td>Infraestrutura</td>
+                                <td><span class="status-badge status-concluido">Concluído</span></td>
+                                <td>
+                                    <div class="sla-indicator">
+                                        <div class="sla-dot sla-ok"></div>
+                                        <span class="sla-text sla-ok-text">OK</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>27/01</td>
+                                <td>
+                                    <span class="area-tag">
+                                        H2 - Processo
+                                        <span class="area-tooltip">Herbicidas 2 - Área de Processo</span>
+                                    </span>
+                                </td>
+                                <td>Substituição fonte conversor de fibra óptica</td>
+                                <td>Manutenção</td>
+                                <td><span class="status-badge status-concluido">Concluído</span></td>
+                                <td>
+                                    <div class="sla-indicator">
+                                        <div class="sla-dot sla-ok"></div>
+                                        <span class="sla-text sla-ok-text">OK</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>27/01</td>
+                                <td>
+                                    <span class="area-tag">
+                                        EC - Envase
+                                        <span class="area-tooltip">Emulsão Concentrada - Encaixotadora</span>
+                                    </span>
+                                </td>
+                                <td>Acompanhamento Provitec - documentação</td>
+                                <td>Acompanhamento</td>
+                                <td><span class="status-badge status-andamento">Em andamento</span></td>
+                                <td>
+                                    <div class="sla-indicator">
+                                        <div class="sla-dot sla-ok"></div>
+                                        <span class="sla-text sla-ok-text">OK</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>27/01</td>
+                                <td>
+                                    <span class="area-tag">
+                                        Multi-plantas
+                                        <span class="area-tooltip">DMA / H1 / SC1 / EC</span>
+                                    </span>
+                                </td>
+                                <td>Análise prévia lista de melhorias</td>
+                                <td>Planejamento</td>
+                                <td><span class="status-badge status-andamento">Em andamento</span></td>
+                                <td>
+                                    <div class="sla-indicator">
+                                        <div class="sla-dot sla-ok"></div>
+                                        <span class="sla-text sla-ok-text">OK</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>28/01</td>
+                                <td>
+                                    <span class="area-tag">
+                                        EC - Envase
+                                        <span class="area-tooltip">Emulsão Concentrada - Encaixotadora</span>
+                                    </span>
+                                </td>
+                                <td>Ajustes: alarmes 20L, M08, armador de caixas</td>
+                                <td>Acompanhamento</td>
+                                <td><span class="status-badge status-andamento">Em andamento</span></td>
+                                <td>
+                                    <div class="sla-indicator">
+                                        <div class="sla-dot sla-ok"></div>
+                                        <span class="sla-text sla-ok-text">OK</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="right-content">
+                <!-- Calendário -->
+                <div class="calendar-container">
+                    <div class="chart-title">📅 Calendário de Atividades</div>
+                    <div class="calendar-header">
+                        <div class="calendar-nav">
+                            <button onclick="prevMonth()">‹</button>
+                        </div>
+                        <div class="calendar-month" id="calendarMonth">Janeiro 2026</div>
+                        <div class="calendar-nav">
+                            <button onclick="nextMonth()">›</button>
+                        </div>
+                    </div>
+                    <div class="calendar-grid" id="calendarGrid">
+                        <!-- Dias da semana -->
+                        <div class="calendar-weekday">Dom</div>
+                        <div class="calendar-weekday">Seg</div>
+                        <div class="calendar-weekday">Ter</div>
+                        <div class="calendar-weekday">Qua</div>
+                        <div class="calendar-weekday">Qui</div>
+                        <div class="calendar-weekday">Sex</div>
+                        <div class="calendar-weekday">Sáb</div>
+                    </div>
+                    <div class="day-detail" id="dayDetail">
+                        <div class="day-detail-title">Selecione um dia para ver as atividades</div>
+                        <div class="no-activity">Clique em um dia com indicador verde</div>
+                    </div>
+                </div>
+
+                <!-- Ranking de Áreas -->
+                <div class="chart-container">
+                    <div class="chart-title">🏆 Áreas Atendidas</div>
+                    <div class="ranking-list">
+                        <div class="ranking-item">
+                            <div class="ranking-position">1</div>
+                            <div class="ranking-area">
+                                EC - Envase
+                                <div class="ranking-area-sub">Encaixotadora</div>
+                            </div>
+                            <div class="ranking-count">3 atividades</div>
+                        </div>
+                        <div class="ranking-item">
+                            <div class="ranking-position">2</div>
+                            <div class="ranking-area">
+                                EW - Processo
+                                <div class="ranking-area-sub">Emulsão Óleo em Água</div>
+                            </div>
+                            <div class="ranking-count">1 atividade</div>
+                        </div>
+                        <div class="ranking-item">
+                            <div class="ranking-position">3</div>
+                            <div class="ranking-area">
+                                H2 - Processo
+                                <div class="ranking-area-sub">Herbicidas 2</div>
+                            </div>
+                            <div class="ranking-count">1 atividade</div>
+                        </div>
+                        <div class="ranking-item">
+                            <div class="ranking-position">4</div>
+                            <div class="ranking-area">
+                                Multi-plantas
+                                <div class="ranking-area-sub">Planejamento geral</div>
+                            </div>
+                            <div class="ranking-count">1 atividade</div>
+                        </div>
+                        <div class="ranking-item">
+                            <div class="ranking-position">5</div>
+                            <div class="ranking-area">
+                                Estação de Trabalho
+                                <div class="ranking-area-sub">Infraestrutura</div>
+                            </div>
+                            <div class="ranking-count">1 atividade</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        Controle de Atividades - Automação Industrial | Sumitomo Chemical Brasil
+    </div>
+
+    <script>
+        // Dados das atividades por dia
+        const activities = {
+            '2026-01-26': [
+                { area: 'EW - Processo', desc: 'Liberação receita Tempest via CLP', tipo: 'Suporte Técnico' },
+                { area: 'EC - Envase', desc: 'Acompanhamento equipe Provitec - ajustes IHM', tipo: 'Acompanhamento' },
+                { area: 'Estação de Trabalho', desc: 'Instalação TIA Portal V18', tipo: 'Infraestrutura' }
+            ],
+            '2026-01-27': [
+                { area: 'H2 - Processo', desc: 'Substituição fonte conversor de fibra óptica', tipo: 'Manutenção' },
+                { area: 'EC - Envase', desc: 'Acompanhamento Provitec - documentação', tipo: 'Acompanhamento' },
+                { area: 'Multi-plantas', desc: 'Análise prévia lista de melhorias', tipo: 'Planejamento' }
+            ],
+            '2026-01-28': [
+                { area: 'EC - Envase', desc: 'Ajustes: alarmes 20L, M08, armador de caixas', tipo: 'Acompanhamento' }
+            ]
+        };
+
+        let currentMonth = 0; // Janeiro
+        let currentYear = 2026;
+
+        function renderCalendar() {
+            const grid = document.getElementById('calendarGrid');
+            const monthLabel = document.getElementById('calendarMonth');
+            
+            const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 
+                           'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+            
+            monthLabel.textContent = `${months[currentMonth]} ${currentYear}`;
+            
+            // Limpar dias anteriores (manter cabeçalhos)
+            const weekdays = grid.querySelectorAll('.calendar-weekday');
+            grid.innerHTML = '';
+            weekdays.forEach(wd => grid.appendChild(wd.cloneNode(true)));
+            
+            // Primeiro dia do mês
+            const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+            
+            // Dias vazios antes do primeiro dia
+            for (let i = 0; i < firstDay; i++) {
+                const emptyDay = document.createElement('div');
+                emptyDay.className = 'calendar-day empty';
+                grid.appendChild(emptyDay);
+            }
+            
+            // Dias do mês
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayEl = document.createElement('div');
+                dayEl.className = 'calendar-day';
+                dayEl.textContent = day;
+                
+                const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                
+                if (activities[dateStr]) {
+                    dayEl.classList.add('has-activity');
+                }
+                
+                // Hoje
+                const today = new Date();
+                if (day === 28 && currentMonth === 0 && currentYear === 2026) {
+                    dayEl.classList.add('today');
+                }
+                
+                dayEl.onclick = () => showDayDetail(dateStr, day);
+                grid.appendChild(dayEl);
+            }
+        }
+
+        function showDayDetail(dateStr, day) {
+            const detail = document.getElementById('dayDetail');
+            const dayActivities = activities[dateStr];
+            
+            // Remover seleção anterior
+            document.querySelectorAll('.calendar-day.selected').forEach(el => el.classList.remove('selected'));
+            
+            // Adicionar seleção atual
+            event.target.classList.add('selected');
+            
+            if (dayActivities && dayActivities.length > 0) {
+                let html = `<div class="day-detail-title">Atividades em ${day}/${currentMonth + 1}/${currentYear}</div>`;
+                dayActivities.forEach(act => {
+                    html += `
+                        <div class="day-activity">
+                            <div class="day-activity-area">${act.area} • ${act.tipo}</div>
+                            ${act.desc}
+                        </div>
+                    `;
+                });
+                detail.innerHTML = html;
+            } else {
+                detail.innerHTML = `
+                    <div class="day-detail-title">Dia ${day}/${currentMonth + 1}/${currentYear}</div>
+                    <div class="no-activity">Nenhuma atividade registrada</div>
+                `;
+            }
+        }
+
+        function prevMonth() {
+            currentMonth--;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            renderCalendar();
+        }
+
+        function nextMonth() {
+            currentMonth++;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            renderCalendar();
+        }
+
+        // Inicializar calendário
+        renderCalendar();
+
+        // Gráfico de Status (Pizza)
+        const statusCtx = document.getElementById('statusChart').getContext('2d');
+        new Chart(statusCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Concluído', 'Em andamento'],
+                datasets: [{
+                    data: [3, 4],
+                    backgroundColor: [
+                        'rgba(88, 214, 141, 0.8)',
+                        'rgba(244, 208, 63, 0.8)'
+                    ],
+                    borderColor: [
+                        'rgba(88, 214, 141, 1)',
+                        'rgba(244, 208, 63, 1)'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: '#fff',
+                            padding: 15,
+                            font: { size: 11 }
+                        }
+                    }
+                },
+                cutout: '65%'
+            }
+        });
+
+        // Gráfico de Áreas (Barras Horizontais)
+        const areaCtx = document.getElementById('areaChart').getContext('2d');
+        new Chart(areaCtx, {
+            type: 'bar',
+            data: {
+                labels: ['EC - Envase', 'EW', 'H2', 'Multi-plantas', 'Est. Trabalho'],
+                datasets: [{
+                    label: 'Atividades',
+                    data: [3, 1, 1, 1, 1],
+                    backgroundColor: [
+                        'rgba(46, 117, 182, 0.8)',
+                        'rgba(93, 173, 226, 0.8)',
+                        'rgba(88, 214, 141, 0.8)',
+                        'rgba(244, 208, 63, 0.8)',
+                        'rgba(187, 143, 206, 0.8)'
+                    ],
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    x: {
+                        grid: { color: 'rgba(255,255,255,0.1)' },
+                        ticks: { color: '#fff', stepSize: 1 }
+                    },
+                    y: {
+                        grid: { display: false },
+                        ticks: { color: '#fff', font: { size: 10 } }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
