@@ -27,7 +27,7 @@
 
         .header {
             background: linear-gradient(90deg, #1F4E79 0%, #2E75B6 100%);
-            padding: 10px 25px;
+            padding: 12px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -42,12 +42,12 @@
         }
 
         .logo-img {
-            height: 28px;
+            height: 32px;
             filter: brightness(0) invert(1);
         }
 
         .header h1 {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 500;
             opacity: 0.95;
         }
@@ -57,17 +57,17 @@
         }
 
         .header-info .name {
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 600;
         }
 
         .header-info .period {
-            font-size: 11px;
+            font-size: 12px;
             opacity: 0.85;
         }
 
         .container {
-            padding: 12px 20px;
+            padding: 15px 25px;
             flex: 1;
             display: flex;
             flex-direction: column;
@@ -78,28 +78,28 @@
         .cards-row {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 10px;
-            margin-bottom: 12px;
+            gap: 12px;
+            margin-bottom: 15px;
             flex-shrink: 0;
         }
 
         .card {
             background: linear-gradient(145deg, #1e3a5f 0%, #152a42 100%);
-            border-radius: 8px;
-            padding: 10px;
+            border-radius: 10px;
+            padding: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             border: 1px solid rgba(255,255,255,0.08);
             text-align: center;
         }
 
         .card-value {
-            font-size: 22px;
+            font-size: 26px;
             font-weight: 700;
             margin-bottom: 2px;
         }
 
         .card-label {
-            font-size: 9px;
+            font-size: 10px;
             opacity: 0.6;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -111,40 +111,30 @@
         .card.atrasado .card-value { color: #EC7063; }
         .card.prazo .card-value { color: #58D68D; }
 
-        /* Layout Principal */
+        /* Layout Principal - 3 colunas */
         .main-layout {
             display: grid;
-            grid-template-columns: 1fr 280px;
+            grid-template-columns: 280px 1fr 300px;
             gap: 15px;
             flex: 1;
             overflow: hidden;
         }
 
-        .left-panel {
+        /* Coluna Esquerda - Calendário Compacto */
+        .left-column {
             display: flex;
             flex-direction: column;
             gap: 12px;
             overflow: hidden;
         }
 
-        .right-panel {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            overflow: hidden;
-        }
-
-        /* Calendário - Protagonista */
+        /* Calendário Compacto */
         .calendar-section {
             background: linear-gradient(145deg, #1e3a5f 0%, #152a42 100%);
             border-radius: 10px;
             padding: 15px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             border: 1px solid rgba(255,255,255,0.08);
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
         }
 
         .calendar-header {
@@ -152,27 +142,26 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 12px;
-            flex-shrink: 0;
         }
 
         .calendar-title {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
 
         .calendar-nav {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
         }
 
         .calendar-month {
-            font-size: 16px;
+            font-size: 13px;
             font-weight: 600;
-            min-width: 140px;
+            min-width: 100px;
             text-align: center;
         }
 
@@ -180,11 +169,11 @@
             background: rgba(46, 117, 182, 0.4);
             border: none;
             color: white;
-            width: 28px;
-            height: 28px;
-            border-radius: 6px;
+            width: 24px;
+            height: 24px;
+            border-radius: 5px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 12px;
             transition: all 0.3s;
         }
 
@@ -192,30 +181,17 @@
             background: rgba(46, 117, 182, 0.7);
         }
 
-        .calendar-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            flex: 1;
-            overflow: hidden;
-        }
-
-        .calendar-grid-container {
-            display: flex;
-            flex-direction: column;
-        }
-
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: 4px;
+            gap: 3px;
         }
 
         .calendar-weekday {
             text-align: center;
-            font-size: 10px;
+            font-size: 9px;
             opacity: 0.5;
-            padding: 6px 0;
+            padding: 4px 0;
             text-transform: uppercase;
             font-weight: 600;
         }
@@ -225,8 +201,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 8px;
-            font-size: 12px;
+            border-radius: 6px;
+            font-size: 11px;
             cursor: pointer;
             transition: all 0.2s;
             position: relative;
@@ -251,9 +227,9 @@
         .calendar-day.has-activity::after {
             content: '';
             position: absolute;
-            bottom: 3px;
-            width: 5px;
-            height: 5px;
+            bottom: 2px;
+            width: 4px;
+            height: 4px;
             background: #58D68D;
             border-radius: 50%;
         }
@@ -262,7 +238,7 @@
             background: linear-gradient(135deg, #2E75B6 0%, #1F4E79 100%);
             color: white;
             font-weight: 700;
-            box-shadow: 0 4px 15px rgba(46, 117, 182, 0.5);
+            box-shadow: 0 2px 10px rgba(46, 117, 182, 0.5);
         }
 
         .calendar-day.today {
@@ -270,10 +246,13 @@
         }
 
         /* Detalhes do Dia */
-        .day-details {
-            background: rgba(0,0,0,0.2);
-            border-radius: 8px;
+        .day-details-section {
+            background: linear-gradient(145deg, #1e3a5f 0%, #152a42 100%);
+            border-radius: 10px;
             padding: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.08);
+            flex: 1;
             display: flex;
             flex-direction: column;
             overflow: hidden;
@@ -283,14 +262,14 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             padding-bottom: 10px;
             border-bottom: 1px solid rgba(255,255,255,0.1);
             flex-shrink: 0;
         }
 
         .day-details-date {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
             color: #5DADE2;
         }
@@ -315,12 +294,7 @@
             border-radius: 6px;
             padding: 10px 12px;
             border-left: 3px solid #2E75B6;
-            transition: all 0.2s;
             flex-shrink: 0;
-        }
-
-        .day-activity-item:hover {
-            background: rgba(255,255,255,0.08);
         }
 
         .day-activity-item.concluido {
@@ -382,117 +356,51 @@
         }
 
         .no-activity-icon {
-            font-size: 32px;
+            font-size: 28px;
             margin-bottom: 8px;
         }
 
         .no-activity-text {
             font-size: 11px;
+            text-align: center;
         }
 
-        /* Painel Direito */
-        .panel-box {
-            background: linear-gradient(145deg, #1e3a5f 0%, #152a42 100%);
-            border-radius: 8px;
-            padding: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.08);
-        }
-
-        .panel-title {
-            font-size: 11px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            opacity: 0.9;
-        }
-
-        .chart-small {
-            height: 100px;
-        }
-
-        /* Ranking */
-        .ranking-item {
-            display: flex;
-            align-items: center;
-            padding: 6px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .ranking-item:last-child {
-            border-bottom: none;
-        }
-
-        .ranking-pos {
-            width: 18px;
-            height: 18px;
-            border-radius: 5px;
-            background: rgba(46, 117, 182, 0.4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 9px;
-            font-weight: 600;
-            margin-right: 8px;
-        }
-
-        .ranking-info {
-            flex: 1;
-        }
-
-        .ranking-area {
-            font-size: 10px;
-            font-weight: 500;
-        }
-
-        .ranking-sub {
-            font-size: 8px;
-            opacity: 0.5;
-        }
-
-        .ranking-count {
-            font-size: 9px;
-            background: linear-gradient(90deg, #2E75B6, #5DADE2);
-            padding: 2px 6px;
-            border-radius: 8px;
-            font-weight: 600;
-        }
-
-        /* Tabela Compacta */
-        .table-section {
-            background: linear-gradient(145deg, #1e3a5f 0%, #152a42 100%);
-            border-radius: 8px;
-            padding: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.08);
-            flex-shrink: 0;
-            max-height: 160px;
+        /* Coluna Central - Tabela */
+        .center-column {
             display: flex;
             flex-direction: column;
+            overflow: hidden;
+        }
+
+        .table-section {
+            background: linear-gradient(145deg, #1e3a5f 0%, #152a42 100%);
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.08);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
         }
 
         .table-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             flex-shrink: 0;
         }
 
-        .table-wrapper {
-            overflow: hidden;
-            flex: 1;
+        .panel-title {
+            font-size: 13px;
+            font-weight: 600;
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            gap: 6px;
         }
 
-        .table-head {
-            flex-shrink: 0;
-        }
-
-        .table-body-scroll {
+        .table-scroll {
             overflow-y: auto;
             flex: 1;
         }
@@ -500,40 +408,35 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 10px;
-            table-layout: fixed;
+            font-size: 12px;
         }
 
         th {
             text-align: left;
-            padding: 6px 4px;
+            padding: 10px 8px;
             background: rgba(46, 117, 182, 0.2);
-            font-size: 8px;
+            font-size: 10px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 1;
         }
 
         td {
-            padding: 5px 4px;
-            border-bottom: 1px solid rgba(255,255,255,0.03);
+            padding: 10px 8px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
         tr:hover td {
             background: rgba(255,255,255,0.03);
         }
 
-        .col-data { width: 10%; }
-        .col-area { width: 15%; }
-        .col-ativ { width: 40%; }
-        .col-tipo { width: 12%; }
-        .col-status { width: 15%; }
-        .col-sla { width: 8%; }
-
         .status-badge {
-            padding: 2px 5px;
-            border-radius: 6px;
-            font-size: 8px;
+            padding: 3px 8px;
+            border-radius: 8px;
+            font-size: 10px;
             font-weight: 600;
         }
 
@@ -549,20 +452,93 @@
 
         .sla-ok {
             color: #58D68D;
+            font-size: 14px;
+        }
+
+        /* Coluna Direita - Gráficos e Ranking */
+        .right-column {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            overflow: hidden;
+        }
+
+        .panel-box {
+            background: linear-gradient(145deg, #1e3a5f 0%, #152a42 100%);
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .chart-container {
+            height: 130px;
+        }
+
+        /* Ranking */
+        .ranking-section {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .ranking-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .ranking-item:last-child {
+            border-bottom: none;
+        }
+
+        .ranking-pos {
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+            background: rgba(46, 117, 182, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+
+        .ranking-info {
+            flex: 1;
+        }
+
+        .ranking-area {
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .ranking-sub {
+            font-size: 10px;
+            opacity: 0.5;
+        }
+
+        .ranking-count {
+            font-size: 11px;
+            background: linear-gradient(90deg, #2E75B6, #5DADE2);
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-weight: 600;
         }
 
         /* Footer */
         .footer {
             text-align: center;
-            padding: 8px;
+            padding: 10px;
             opacity: 0.3;
-            font-size: 9px;
+            font-size: 10px;
             flex-shrink: 0;
         }
 
         /* Scrollbar */
         ::-webkit-scrollbar {
-            width: 5px;
+            width: 6px;
         }
 
         ::-webkit-scrollbar-track {
@@ -614,135 +590,131 @@
         </div>
 
         <div class="main-layout">
-            <div class="left-panel">
-                <!-- Calendário -->
+            <!-- Coluna Esquerda -->
+            <div class="left-column">
+                <!-- Calendário Compacto -->
                 <div class="calendar-section">
                     <div class="calendar-header">
-                        <div class="calendar-title">📅 Calendário de Atividades</div>
+                        <div class="calendar-title">📅 Calendário</div>
                         <div class="calendar-nav">
                             <button class="nav-btn" onclick="prevMonth()">‹</button>
-                            <div class="calendar-month" id="calendarMonth">Janeiro 2026</div>
+                            <div class="calendar-month" id="calendarMonth">Jan 2026</div>
                             <button class="nav-btn" onclick="nextMonth()">›</button>
                         </div>
                     </div>
-                    
-                    <div class="calendar-content">
-                        <div class="calendar-grid-container">
-                            <div class="calendar-grid" id="calendarGrid"></div>
-                        </div>
-                        
-                        <div class="day-details" id="dayDetails">
-                            <div class="no-activity">
-                                <div class="no-activity-icon">📅</div>
-                                <div class="no-activity-text">Selecione um dia para ver as atividades</div>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="calendar-grid" id="calendarGrid"></div>
                 </div>
 
-                <!-- Tabela Compacta -->
-                <div class="table-section">
-                    <div class="table-header">
-                        <div class="panel-title">📋 Todas as Atividades da Semana</div>
-                    </div>
-                    <div class="table-wrapper">
-                        <table class="table-head">
-                            <thead>
-                                <tr>
-                                    <th class="col-data">Data</th>
-                                    <th class="col-area">Área</th>
-                                    <th class="col-ativ">Atividade</th>
-                                    <th class="col-tipo">Tipo</th>
-                                    <th class="col-status">Status</th>
-                                    <th class="col-sla">SLA</th>
-                                </tr>
-                            </thead>
-                        </table>
-                        <div class="table-body-scroll">
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td class="col-data">26/01</td>
-                                        <td class="col-area">EW</td>
-                                        <td class="col-ativ">Liberação receita Tempest via CLP</td>
-                                        <td class="col-tipo">Suporte</td>
-                                        <td class="col-status"><span class="status-badge status-concluido">Concluído</span></td>
-                                        <td class="col-sla sla-ok">✓</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-data">26/01</td>
-                                        <td class="col-area">EC - Envase</td>
-                                        <td class="col-ativ">Acompanhamento Provitec - ajustes IHM</td>
-                                        <td class="col-tipo">Acomp.</td>
-                                        <td class="col-status"><span class="status-badge status-andamento">Andamento</span></td>
-                                        <td class="col-sla sla-ok">✓</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-data">26/01</td>
-                                        <td class="col-area">Est. Trabalho</td>
-                                        <td class="col-ativ">Instalação TIA Portal V18</td>
-                                        <td class="col-tipo">Infra</td>
-                                        <td class="col-status"><span class="status-badge status-concluido">Concluído</span></td>
-                                        <td class="col-sla sla-ok">✓</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-data">27/01</td>
-                                        <td class="col-area">H2</td>
-                                        <td class="col-ativ">Substituição fonte conversor fibra óptica</td>
-                                        <td class="col-tipo">Manut.</td>
-                                        <td class="col-status"><span class="status-badge status-concluido">Concluído</span></td>
-                                        <td class="col-sla sla-ok">✓</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-data">27/01</td>
-                                        <td class="col-area">EC - Envase</td>
-                                        <td class="col-ativ">Acompanhamento Provitec - documentação</td>
-                                        <td class="col-tipo">Acomp.</td>
-                                        <td class="col-status"><span class="status-badge status-andamento">Andamento</span></td>
-                                        <td class="col-sla sla-ok">✓</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-data">27/01</td>
-                                        <td class="col-area">Multi-plantas</td>
-                                        <td class="col-ativ">Análise prévia lista de melhorias</td>
-                                        <td class="col-tipo">Plan.</td>
-                                        <td class="col-status"><span class="status-badge status-andamento">Andamento</span></td>
-                                        <td class="col-sla sla-ok">✓</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-data">28/01</td>
-                                        <td class="col-area">EC - Envase</td>
-                                        <td class="col-ativ">Ajustes: alarmes 20L, M08, armador</td>
-                                        <td class="col-tipo">Acomp.</td>
-                                        <td class="col-status"><span class="status-badge status-andamento">Andamento</span></td>
-                                        <td class="col-sla sla-ok">✓</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                <!-- Detalhes do Dia -->
+                <div class="day-details-section" id="dayDetails">
+                    <div class="no-activity">
+                        <div class="no-activity-icon">📅</div>
+                        <div class="no-activity-text">Selecione um dia<br>para ver as atividades</div>
                     </div>
                 </div>
             </div>
 
-            <div class="right-panel">
+            <!-- Coluna Central - Tabela -->
+            <div class="center-column">
+                <div class="table-section">
+                    <div class="table-header">
+                        <div class="panel-title">📋 Todas as Atividades da Semana</div>
+                    </div>
+                    <div class="table-scroll">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Área / Planta</th>
+                                    <th>Atividade</th>
+                                    <th>Tipo</th>
+                                    <th>Status</th>
+                                    <th>SLA</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>26/01</td>
+                                    <td>EW - Processo</td>
+                                    <td>Liberação receita Tempest via CLP</td>
+                                    <td>Suporte Técnico</td>
+                                    <td><span class="status-badge status-concluido">Concluído</span></td>
+                                    <td class="sla-ok">✓</td>
+                                </tr>
+                                <tr>
+                                    <td>26/01</td>
+                                    <td>EC - Envase</td>
+                                    <td>Acompanhamento equipe Provitec - ajustes IHM</td>
+                                    <td>Acompanhamento</td>
+                                    <td><span class="status-badge status-andamento">Em andamento</span></td>
+                                    <td class="sla-ok">✓</td>
+                                </tr>
+                                <tr>
+                                    <td>26/01</td>
+                                    <td>Est. Trabalho</td>
+                                    <td>Instalação TIA Portal V18</td>
+                                    <td>Infraestrutura</td>
+                                    <td><span class="status-badge status-concluido">Concluído</span></td>
+                                    <td class="sla-ok">✓</td>
+                                </tr>
+                                <tr>
+                                    <td>27/01</td>
+                                    <td>H2 - Processo</td>
+                                    <td>Substituição fonte conversor de fibra óptica</td>
+                                    <td>Manutenção</td>
+                                    <td><span class="status-badge status-concluido">Concluído</span></td>
+                                    <td class="sla-ok">✓</td>
+                                </tr>
+                                <tr>
+                                    <td>27/01</td>
+                                    <td>EC - Envase</td>
+                                    <td>Acompanhamento Provitec - documentação</td>
+                                    <td>Acompanhamento</td>
+                                    <td><span class="status-badge status-andamento">Em andamento</span></td>
+                                    <td class="sla-ok">✓</td>
+                                </tr>
+                                <tr>
+                                    <td>27/01</td>
+                                    <td>Multi-plantas</td>
+                                    <td>Análise prévia lista de melhorias</td>
+                                    <td>Planejamento</td>
+                                    <td><span class="status-badge status-andamento">Em andamento</span></td>
+                                    <td class="sla-ok">✓</td>
+                                </tr>
+                                <tr>
+                                    <td>28/01</td>
+                                    <td>EC - Envase</td>
+                                    <td>Ajustes: alarmes 20L, M08, armador de caixas</td>
+                                    <td>Acompanhamento</td>
+                                    <td><span class="status-badge status-andamento">Em andamento</span></td>
+                                    <td class="sla-ok">✓</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coluna Direita - Gráficos e Ranking -->
+            <div class="right-column">
                 <!-- Gráfico Status -->
                 <div class="panel-box">
-                    <div class="panel-title">📊 Status</div>
-                    <div class="chart-small">
+                    <div class="panel-title">📊 Status das Atividades</div>
+                    <div class="chart-container">
                         <canvas id="statusChart"></canvas>
                     </div>
                 </div>
 
                 <!-- Gráfico Áreas -->
                 <div class="panel-box">
-                    <div class="panel-title">🏭 Por Área</div>
-                    <div class="chart-small">
+                    <div class="panel-title">🏭 Atividades por Área</div>
+                    <div class="chart-container">
                         <canvas id="areaChart"></canvas>
                     </div>
                 </div>
 
                 <!-- Ranking -->
-                <div class="panel-box" style="flex: 1; overflow-y: auto;">
+                <div class="panel-box ranking-section">
                     <div class="panel-title">🏆 Áreas Atendidas</div>
                     <div class="ranking-item">
                         <div class="ranking-pos">1</div>
@@ -772,7 +744,7 @@
                         <div class="ranking-pos">4</div>
                         <div class="ranking-info">
                             <div class="ranking-area">Multi-plantas</div>
-                            <div class="ranking-sub">Planejamento</div>
+                            <div class="ranking-sub">Planejamento geral</div>
                         </div>
                         <div class="ranking-count">1</div>
                     </div>
@@ -819,12 +791,11 @@
             const grid = document.getElementById('calendarGrid');
             const monthLabel = document.getElementById('calendarMonth');
             
-            const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 
-                           'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+            const months = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
             
             monthLabel.textContent = `${months[currentMonth]} ${currentYear}`;
             
-            const weekdays = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+            const weekdays = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
             grid.innerHTML = weekdays.map(d => `<div class="calendar-weekday">${d}</div>`).join('');
             
             const firstDay = new Date(currentYear, currentMonth, 1).getDay();
@@ -887,7 +858,7 @@
                     </div>
                     <div class="no-activity">
                         <div class="no-activity-icon">📭</div>
-                        <div class="no-activity-text">Nenhuma atividade registrada</div>
+                        <div class="no-activity-text">Nenhuma atividade<br>registrada</div>
                     </div>
                 `;
             }
@@ -924,21 +895,21 @@
                 plugins: {
                     legend: {
                         position: 'bottom',
-                        labels: { color: '#fff', font: { size: 9 }, padding: 8 }
+                        labels: { color: '#fff', font: { size: 11 }, padding: 10 }
                     }
                 },
-                cutout: '60%'
+                cutout: '55%'
             }
         });
 
         new Chart(document.getElementById('areaChart'), {
             type: 'bar',
             data: {
-                labels: ['EC', 'EW', 'H2', 'Multi', 'Est.'],
+                labels: ['EC - Envase', 'EW', 'H2', 'Multi', 'Est.'],
                 datasets: [{
                     data: [3, 1, 1, 1, 1],
                     backgroundColor: 'rgba(46, 117, 182, 0.7)',
-                    borderRadius: 3
+                    borderRadius: 4
                 }]
             },
             options: {
@@ -947,8 +918,15 @@
                 indexAxis: 'y',
                 plugins: { legend: { display: false } },
                 scales: {
-                    x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#fff', font: { size: 8 } } },
-                    y: { grid: { display: false }, ticks: { color: '#fff', font: { size: 8 } } }
+                    x: { 
+                        grid: { color: 'rgba(255,255,255,0.05)' }, 
+                        ticks: { color: '#fff', font: { size: 10 } },
+                        max: 4
+                    },
+                    y: { 
+                        grid: { display: false }, 
+                        ticks: { color: '#fff', font: { size: 10 } } 
+                    }
                 }
             }
         });
