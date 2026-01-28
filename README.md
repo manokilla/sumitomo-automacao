@@ -1,66 +1,53 @@
-# Gestão de Atividades - Automação Industrial
+# Controle de Atividades - Automação Industrial
 
 **Profissional:** Diogo Moura  
-**Empresa:** Sumitomo Chemical  
-**Início:** Janeiro/2026
+**Empresa:** Sumitomo Chemical Brasil  
+**Início:** Janeiro de 2026
 
 ---
 
-## Sobre este Repositório
+## Estrutura do Repositório
 
-Este repositório contém o registro organizado de todas as atividades, melhorias implementadas e relatórios gerenciais relacionados ao trabalho de automação industrial na Sumitomo Chemical.
-
----
-
-## Estrutura de Pastas
-
-```
-📁 sumitomo-automacao/
-├── 📄 README.md                    ← Você está aqui
-├── 📄 INDICE_MELHORIAS.md          ← Índice pesquisável de todas as melhorias
-├── 📁 Backlog/                     ← Demandas pendentes e em andamento
-├── 📁 Melhorias_Implementadas/     ← Documentação de cada melhoria concluída
-└── 📁 Relatorios/                  ← Relatórios semanais organizados por período
-    └── 📁 2026/
-        └── 📁 01-Janeiro/
-            └── 📁 Semana_26-31/
-```
-
----
-
-## Acesso Rápido
-
-### Relatórios Semanais
-
-| Período | Status | Link |
-|:--------|:-------|:-----|
-| 26/01 a 31/01/2026 | Em andamento | [Acessar](Relatorios/2026/01-Janeiro/Semana_26-31/) |
-
-### Últimas Melhorias Implementadas
-
-| Data | Área | Descrição | Link |
-|:-----|:-----|:----------|:-----|
-| 26/01/2026 | EW | Liberação receita Tempest via CLP | [Ver detalhes](Melhorias_Implementadas/2026-01-26_EW_Tempest.md) |
-| 27/01/2026 | H2 | Substituição fonte conversor de fibra | [Ver detalhes](Melhorias_Implementadas/2026-01-27_H2_Conversor_Fibra.md) |
-
-### Backlog de Demandas
-
-[📋 Ver lista completa de demandas](Backlog/Lista_Demandas.md)
+| Pasta | Conteúdo |
+|:------|:---------|
+| `Dashboard/` | Dashboards interativos por período (HTML) |
+| `Relatorios_PDF/` | Relatórios executivos para envio por e-mail |
+| `Melhorias/` | Documentação de melhorias implementadas |
+| `assets/` | Recursos visuais (logos, imagens) |
 
 ---
 
 ## Como Usar
 
-1. **Para buscar uma melhoria específica:** Acesse o [Índice de Melhorias](INDICE_MELHORIAS.md) e use Ctrl+F para pesquisar
-2. **Para ver relatórios:** Navegue pela pasta `Relatorios/` organizada por ano e mês
-3. **Para ver demandas pendentes:** Acesse a pasta `Backlog/`
+### Dashboard Interativo
+1. Acesse `Dashboard/2026/`
+2. Baixe o arquivo HTML da semana desejada
+3. Abra no navegador (Chrome, Edge, Firefox)
+
+### Relatório PDF
+1. Acesse `Relatorios_PDF/2026/`
+2. Baixe o PDF da semana desejada
+3. Anexe no e-mail ou imprima
 
 ---
 
-## Contato
+## Dashboards Disponíveis
 
-Para dúvidas ou informações adicionais, entre em contato com Diogo Moura.
+### 2026
+
+| Período | Dashboard | PDF |
+|:--------|:----------|:----|
+| Semana 26-31 Janeiro | [Abrir](Dashboard/2026/Controle_Atividades_Diogo_Moura_Semana_26-31_Janeiro_2026.html) | [Baixar](Relatorios_PDF/2026/Relatorio_Semanal_26-01_a_31-01-2026.pdf) |
 
 ---
 
-*Repositório gerenciado com apoio de Manus AI*
+## Melhorias Implementadas
+
+| Data | Área | Descrição |
+|:-----|:-----|:----------|
+| 26/01/2026 | EW | [Liberação receita Tempest](Melhorias/2026-01-26_EW_Tempest.md) |
+| 27/01/2026 | H2 | [Substituição conversor de fibra](Melhorias/2026-01-27_H2_Conversor_Fibra.md) |
+
+---
+
+*Controle de Atividades - Automação Industrial | Sumitomo Chemical Brasil*
