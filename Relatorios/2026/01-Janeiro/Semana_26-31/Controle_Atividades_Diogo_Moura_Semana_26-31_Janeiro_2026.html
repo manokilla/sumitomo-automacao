@@ -12,50 +12,42 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #0f1923 0%, #1a2a3a 100%);
-            min-height: 100vh;
             color: #fff;
+            display: flex;
+            flex-direction: column;
         }
 
         .header {
             background: linear-gradient(90deg, #1F4E79 0%, #2E75B6 100%);
-            padding: 12px 30px;
+            padding: 10px 25px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            flex-shrink: 0;
         }
 
         .header-left {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
         }
 
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .logo-icon {
-            width: 36px;
-            height: 36px;
-            background: linear-gradient(135deg, #E31937 0%, #ff4757 100%);
-            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-        }
-
-        .logo-text {
-            font-size: 11px;
-            font-weight: 700;
-            line-height: 1.2;
-            letter-spacing: 0.5px;
+        .logo-img {
+            height: 28px;
+            filter: brightness(0) invert(1);
         }
 
         .header h1 {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 500;
             opacity: 0.95;
         }
@@ -65,52 +57,49 @@
         }
 
         .header-info .name {
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 600;
         }
 
         .header-info .period {
-            font-size: 12px;
+            font-size: 11px;
             opacity: 0.85;
         }
 
         .container {
-            padding: 20px 30px;
-            max-width: 1400px;
-            margin: 0 auto;
+            padding: 12px 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
         }
 
         /* Cards de Indicadores */
         .cards-row {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
-        @media (max-width: 900px) {
-            .cards-row {
-                grid-template-columns: repeat(3, 1fr);
-            }
+            gap: 10px;
+            margin-bottom: 12px;
+            flex-shrink: 0;
         }
 
         .card {
             background: linear-gradient(145deg, #1e3a5f 0%, #152a42 100%);
-            border-radius: 10px;
-            padding: 15px;
+            border-radius: 8px;
+            padding: 10px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             border: 1px solid rgba(255,255,255,0.08);
             text-align: center;
         }
 
         .card-value {
-            font-size: 28px;
+            font-size: 22px;
             font-weight: 700;
             margin-bottom: 2px;
         }
 
         .card-label {
-            font-size: 10px;
+            font-size: 9px;
             opacity: 0.6;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -125,46 +114,49 @@
         /* Layout Principal */
         .main-layout {
             display: grid;
-            grid-template-columns: 1fr 320px;
-            gap: 20px;
-        }
-
-        @media (max-width: 1000px) {
-            .main-layout {
-                grid-template-columns: 1fr;
-            }
+            grid-template-columns: 1fr 280px;
+            gap: 15px;
+            flex: 1;
+            overflow: hidden;
         }
 
         .left-panel {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 12px;
+            overflow: hidden;
         }
 
         .right-panel {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 10px;
+            overflow: hidden;
         }
 
         /* Calendário - Protagonista */
         .calendar-section {
             background: linear-gradient(145deg, #1e3a5f 0%, #152a42 100%);
-            border-radius: 12px;
-            padding: 25px;
+            border-radius: 10px;
+            padding: 15px;
             box-shadow: 0 8px 30px rgba(0,0,0,0.4);
             border: 1px solid rgba(255,255,255,0.08);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
         }
 
         .calendar-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 12px;
+            flex-shrink: 0;
         }
 
         .calendar-title {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 600;
             display: flex;
             align-items: center;
@@ -174,13 +166,13 @@
         .calendar-nav {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
         }
 
         .calendar-month {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
-            min-width: 150px;
+            min-width: 140px;
             text-align: center;
         }
 
@@ -188,46 +180,42 @@
             background: rgba(46, 117, 182, 0.4);
             border: none;
             color: white;
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 14px;
             transition: all 0.3s;
         }
 
         .nav-btn:hover {
             background: rgba(46, 117, 182, 0.7);
-            transform: scale(1.05);
         }
 
         .calendar-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 25px;
-        }
-
-        @media (max-width: 700px) {
-            .calendar-content {
-                grid-template-columns: 1fr;
-            }
+            gap: 15px;
+            flex: 1;
+            overflow: hidden;
         }
 
         .calendar-grid-container {
-            /* Calendário */
+            display: flex;
+            flex-direction: column;
         }
 
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: 6px;
+            gap: 4px;
         }
 
         .calendar-weekday {
             text-align: center;
-            font-size: 11px;
+            font-size: 10px;
             opacity: 0.5;
-            padding: 8px 0;
+            padding: 6px 0;
             text-transform: uppercase;
             font-weight: 600;
         }
@@ -237,8 +225,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 10px;
-            font-size: 14px;
+            border-radius: 8px;
+            font-size: 12px;
             cursor: pointer;
             transition: all 0.2s;
             position: relative;
@@ -247,7 +235,6 @@
 
         .calendar-day:hover:not(.empty) {
             background: rgba(46, 117, 182, 0.3);
-            transform: scale(1.05);
         }
 
         .calendar-day.empty {
@@ -264,9 +251,9 @@
         .calendar-day.has-activity::after {
             content: '';
             position: absolute;
-            bottom: 5px;
-            width: 6px;
-            height: 6px;
+            bottom: 3px;
+            width: 5px;
+            height: 5px;
             background: #58D68D;
             border-radius: 50%;
         }
@@ -282,55 +269,58 @@
             border: 2px solid #5DADE2;
         }
 
-        /* Detalhes do Dia - Destaque */
+        /* Detalhes do Dia */
         .day-details {
             background: rgba(0,0,0,0.2);
-            border-radius: 10px;
-            padding: 20px;
-            min-height: 280px;
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
         }
 
         .day-details-header {
             display: flex;
             align-items: center;
             gap: 10px;
-            margin-bottom: 15px;
-            padding-bottom: 12px;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
             border-bottom: 1px solid rgba(255,255,255,0.1);
+            flex-shrink: 0;
         }
 
         .day-details-date {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 700;
             color: #5DADE2;
         }
 
         .day-details-count {
             background: rgba(46, 117, 182, 0.3);
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 10px;
         }
 
         .day-activities-list {
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            max-height: 220px;
+            gap: 8px;
             overflow-y: auto;
+            flex: 1;
         }
 
         .day-activity-item {
             background: rgba(255,255,255,0.05);
-            border-radius: 8px;
-            padding: 12px 15px;
+            border-radius: 6px;
+            padding: 10px 12px;
             border-left: 3px solid #2E75B6;
             transition: all 0.2s;
+            flex-shrink: 0;
         }
 
         .day-activity-item:hover {
             background: rgba(255,255,255,0.08);
-            transform: translateX(3px);
         }
 
         .day-activity-item.concluido {
@@ -342,34 +332,34 @@
         }
 
         .activity-area {
-            font-size: 10px;
+            font-size: 9px;
             opacity: 0.6;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
 
         .activity-desc {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 500;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         .activity-meta {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             align-items: center;
         }
 
         .activity-tipo {
-            font-size: 10px;
+            font-size: 9px;
             opacity: 0.5;
         }
 
         .activity-status {
-            font-size: 10px;
-            padding: 2px 8px;
-            border-radius: 10px;
+            font-size: 9px;
+            padding: 2px 6px;
+            border-radius: 8px;
         }
 
         .activity-status.concluido {
@@ -387,32 +377,32 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 200px;
+            flex: 1;
             opacity: 0.4;
         }
 
         .no-activity-icon {
-            font-size: 40px;
-            margin-bottom: 10px;
+            font-size: 32px;
+            margin-bottom: 8px;
         }
 
         .no-activity-text {
-            font-size: 13px;
+            font-size: 11px;
         }
 
-        /* Painel Direito - Gráficos e Ranking */
+        /* Painel Direito */
         .panel-box {
             background: linear-gradient(145deg, #1e3a5f 0%, #152a42 100%);
-            border-radius: 10px;
-            padding: 15px;
+            border-radius: 8px;
+            padding: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             border: 1px solid rgba(255,255,255,0.08);
         }
 
         .panel-title {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
             gap: 6px;
@@ -420,14 +410,14 @@
         }
 
         .chart-small {
-            height: 120px;
+            height: 100px;
         }
 
         /* Ranking */
         .ranking-item {
             display: flex;
             align-items: center;
-            padding: 8px 0;
+            padding: 6px 0;
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
@@ -436,16 +426,16 @@
         }
 
         .ranking-pos {
-            width: 22px;
-            height: 22px;
-            border-radius: 6px;
+            width: 18px;
+            height: 18px;
+            border-radius: 5px;
             background: rgba(46, 117, 182, 0.4);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 11px;
+            font-size: 9px;
             font-weight: 600;
-            margin-right: 10px;
+            margin-right: 8px;
         }
 
         .ranking-info {
@@ -453,74 +443,97 @@
         }
 
         .ranking-area {
-            font-size: 12px;
+            font-size: 10px;
             font-weight: 500;
         }
 
         .ranking-sub {
-            font-size: 9px;
+            font-size: 8px;
             opacity: 0.5;
         }
 
         .ranking-count {
-            font-size: 10px;
+            font-size: 9px;
             background: linear-gradient(90deg, #2E75B6, #5DADE2);
-            padding: 3px 8px;
-            border-radius: 10px;
+            padding: 2px 6px;
+            border-radius: 8px;
             font-weight: 600;
         }
 
         /* Tabela Compacta */
         .table-section {
             background: linear-gradient(145deg, #1e3a5f 0%, #152a42 100%);
-            border-radius: 10px;
-            padding: 15px;
+            border-radius: 8px;
+            padding: 10px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             border: 1px solid rgba(255,255,255,0.08);
+            flex-shrink: 0;
+            max-height: 160px;
+            display: flex;
+            flex-direction: column;
         }
 
         .table-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            flex-shrink: 0;
         }
 
-        .table-scroll {
-            max-height: 180px;
+        .table-wrapper {
+            overflow: hidden;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .table-head {
+            flex-shrink: 0;
+        }
+
+        .table-body-scroll {
             overflow-y: auto;
+            flex: 1;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 11px;
+            font-size: 10px;
+            table-layout: fixed;
         }
 
         th {
             text-align: left;
-            padding: 8px 6px;
+            padding: 6px 4px;
             background: rgba(46, 117, 182, 0.2);
-            font-size: 9px;
+            font-size: 8px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            position: sticky;
-            top: 0;
+            font-weight: 600;
         }
 
         td {
-            padding: 8px 6px;
+            padding: 5px 4px;
             border-bottom: 1px solid rgba(255,255,255,0.03);
         }
 
-        tr:hover {
+        tr:hover td {
             background: rgba(255,255,255,0.03);
         }
 
+        .col-data { width: 10%; }
+        .col-area { width: 15%; }
+        .col-ativ { width: 40%; }
+        .col-tipo { width: 12%; }
+        .col-status { width: 15%; }
+        .col-sla { width: 8%; }
+
         .status-badge {
-            padding: 2px 6px;
-            border-radius: 8px;
-            font-size: 9px;
+            padding: 2px 5px;
+            border-radius: 6px;
+            font-size: 8px;
             font-weight: 600;
         }
 
@@ -541,14 +554,15 @@
         /* Footer */
         .footer {
             text-align: center;
-            padding: 15px;
+            padding: 8px;
             opacity: 0.3;
-            font-size: 10px;
+            font-size: 9px;
+            flex-shrink: 0;
         }
 
         /* Scrollbar */
         ::-webkit-scrollbar {
-            width: 6px;
+            width: 5px;
         }
 
         ::-webkit-scrollbar-track {
@@ -565,10 +579,7 @@
 <body>
     <div class="header">
         <div class="header-left">
-            <div class="logo-container">
-                <div class="logo-icon"></div>
-                <div class="logo-text">SUMITOMO<br>CHEMICAL</div>
-            </div>
+            <img src="../../../../../../assets/logo_sumitomo_oficial.png" alt="Sumitomo Chemical" class="logo-img" onerror="this.style.display='none'">
             <h1>Controle de Atividades - Automação</h1>
         </div>
         <div class="header-info">
@@ -604,7 +615,7 @@
 
         <div class="main-layout">
             <div class="left-panel">
-                <!-- Calendário - Protagonista -->
+                <!-- Calendário -->
                 <div class="calendar-section">
                     <div class="calendar-header">
                         <div class="calendar-title">📅 Calendário de Atividades</div>
@@ -617,15 +628,7 @@
                     
                     <div class="calendar-content">
                         <div class="calendar-grid-container">
-                            <div class="calendar-grid" id="calendarGrid">
-                                <div class="calendar-weekday">Dom</div>
-                                <div class="calendar-weekday">Seg</div>
-                                <div class="calendar-weekday">Ter</div>
-                                <div class="calendar-weekday">Qua</div>
-                                <div class="calendar-weekday">Qui</div>
-                                <div class="calendar-weekday">Sex</div>
-                                <div class="calendar-weekday">Sáb</div>
-                            </div>
+                            <div class="calendar-grid" id="calendarGrid"></div>
                         </div>
                         
                         <div class="day-details" id="dayDetails">
@@ -642,77 +645,81 @@
                     <div class="table-header">
                         <div class="panel-title">📋 Todas as Atividades da Semana</div>
                     </div>
-                    <div class="table-scroll">
-                        <table>
+                    <div class="table-wrapper">
+                        <table class="table-head">
                             <thead>
                                 <tr>
-                                    <th>Data</th>
-                                    <th>Área</th>
-                                    <th>Atividade</th>
-                                    <th>Tipo</th>
-                                    <th>Status</th>
-                                    <th>SLA</th>
+                                    <th class="col-data">Data</th>
+                                    <th class="col-area">Área</th>
+                                    <th class="col-ativ">Atividade</th>
+                                    <th class="col-tipo">Tipo</th>
+                                    <th class="col-status">Status</th>
+                                    <th class="col-sla">SLA</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>26/01</td>
-                                    <td>EW</td>
-                                    <td>Liberação receita Tempest via CLP</td>
-                                    <td>Suporte</td>
-                                    <td><span class="status-badge status-concluido">Concluído</span></td>
-                                    <td class="sla-ok">✓</td>
-                                </tr>
-                                <tr>
-                                    <td>26/01</td>
-                                    <td>EC - Envase</td>
-                                    <td>Acompanhamento Provitec - ajustes IHM</td>
-                                    <td>Acomp.</td>
-                                    <td><span class="status-badge status-andamento">Andamento</span></td>
-                                    <td class="sla-ok">✓</td>
-                                </tr>
-                                <tr>
-                                    <td>26/01</td>
-                                    <td>Est. Trabalho</td>
-                                    <td>Instalação TIA Portal V18</td>
-                                    <td>Infra</td>
-                                    <td><span class="status-badge status-concluido">Concluído</span></td>
-                                    <td class="sla-ok">✓</td>
-                                </tr>
-                                <tr>
-                                    <td>27/01</td>
-                                    <td>H2</td>
-                                    <td>Substituição fonte conversor fibra óptica</td>
-                                    <td>Manut.</td>
-                                    <td><span class="status-badge status-concluido">Concluído</span></td>
-                                    <td class="sla-ok">✓</td>
-                                </tr>
-                                <tr>
-                                    <td>27/01</td>
-                                    <td>EC - Envase</td>
-                                    <td>Acompanhamento Provitec - documentação</td>
-                                    <td>Acomp.</td>
-                                    <td><span class="status-badge status-andamento">Andamento</span></td>
-                                    <td class="sla-ok">✓</td>
-                                </tr>
-                                <tr>
-                                    <td>27/01</td>
-                                    <td>Multi-plantas</td>
-                                    <td>Análise prévia lista de melhorias</td>
-                                    <td>Plan.</td>
-                                    <td><span class="status-badge status-andamento">Andamento</span></td>
-                                    <td class="sla-ok">✓</td>
-                                </tr>
-                                <tr>
-                                    <td>28/01</td>
-                                    <td>EC - Envase</td>
-                                    <td>Ajustes: alarmes 20L, M08, armador</td>
-                                    <td>Acomp.</td>
-                                    <td><span class="status-badge status-andamento">Andamento</span></td>
-                                    <td class="sla-ok">✓</td>
-                                </tr>
-                            </tbody>
                         </table>
+                        <div class="table-body-scroll">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td class="col-data">26/01</td>
+                                        <td class="col-area">EW</td>
+                                        <td class="col-ativ">Liberação receita Tempest via CLP</td>
+                                        <td class="col-tipo">Suporte</td>
+                                        <td class="col-status"><span class="status-badge status-concluido">Concluído</span></td>
+                                        <td class="col-sla sla-ok">✓</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-data">26/01</td>
+                                        <td class="col-area">EC - Envase</td>
+                                        <td class="col-ativ">Acompanhamento Provitec - ajustes IHM</td>
+                                        <td class="col-tipo">Acomp.</td>
+                                        <td class="col-status"><span class="status-badge status-andamento">Andamento</span></td>
+                                        <td class="col-sla sla-ok">✓</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-data">26/01</td>
+                                        <td class="col-area">Est. Trabalho</td>
+                                        <td class="col-ativ">Instalação TIA Portal V18</td>
+                                        <td class="col-tipo">Infra</td>
+                                        <td class="col-status"><span class="status-badge status-concluido">Concluído</span></td>
+                                        <td class="col-sla sla-ok">✓</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-data">27/01</td>
+                                        <td class="col-area">H2</td>
+                                        <td class="col-ativ">Substituição fonte conversor fibra óptica</td>
+                                        <td class="col-tipo">Manut.</td>
+                                        <td class="col-status"><span class="status-badge status-concluido">Concluído</span></td>
+                                        <td class="col-sla sla-ok">✓</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-data">27/01</td>
+                                        <td class="col-area">EC - Envase</td>
+                                        <td class="col-ativ">Acompanhamento Provitec - documentação</td>
+                                        <td class="col-tipo">Acomp.</td>
+                                        <td class="col-status"><span class="status-badge status-andamento">Andamento</span></td>
+                                        <td class="col-sla sla-ok">✓</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-data">27/01</td>
+                                        <td class="col-area">Multi-plantas</td>
+                                        <td class="col-ativ">Análise prévia lista de melhorias</td>
+                                        <td class="col-tipo">Plan.</td>
+                                        <td class="col-status"><span class="status-badge status-andamento">Andamento</span></td>
+                                        <td class="col-sla sla-ok">✓</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-data">28/01</td>
+                                        <td class="col-area">EC - Envase</td>
+                                        <td class="col-ativ">Ajustes: alarmes 20L, M08, armador</td>
+                                        <td class="col-tipo">Acomp.</td>
+                                        <td class="col-status"><span class="status-badge status-andamento">Andamento</span></td>
+                                        <td class="col-sla sla-ok">✓</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -735,7 +742,7 @@
                 </div>
 
                 <!-- Ranking -->
-                <div class="panel-box">
+                <div class="panel-box" style="flex: 1; overflow-y: auto;">
                     <div class="panel-title">🏆 Áreas Atendidas</div>
                     <div class="ranking-item">
                         <div class="ranking-pos">1</div>
@@ -817,19 +824,16 @@
             
             monthLabel.textContent = `${months[currentMonth]} ${currentYear}`;
             
-            // Limpar
             const weekdays = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
             grid.innerHTML = weekdays.map(d => `<div class="calendar-weekday">${d}</div>`).join('');
             
             const firstDay = new Date(currentYear, currentMonth, 1).getDay();
             const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
             
-            // Dias vazios
             for (let i = 0; i < firstDay; i++) {
                 grid.innerHTML += '<div class="calendar-day empty"></div>';
             }
             
-            // Dias do mês
             for (let day = 1; day <= daysInMonth; day++) {
                 const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
                 let classes = 'calendar-day';
@@ -901,7 +905,6 @@
             renderCalendar();
         }
 
-        // Inicializar
         renderCalendar();
 
         // Gráficos
@@ -921,7 +924,7 @@
                 plugins: {
                     legend: {
                         position: 'bottom',
-                        labels: { color: '#fff', font: { size: 10 }, padding: 10 }
+                        labels: { color: '#fff', font: { size: 9 }, padding: 8 }
                     }
                 },
                 cutout: '60%'
@@ -935,7 +938,7 @@
                 datasets: [{
                     data: [3, 1, 1, 1, 1],
                     backgroundColor: 'rgba(46, 117, 182, 0.7)',
-                    borderRadius: 4
+                    borderRadius: 3
                 }]
             },
             options: {
@@ -944,8 +947,8 @@
                 indexAxis: 'y',
                 plugins: { legend: { display: false } },
                 scales: {
-                    x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#fff', font: { size: 9 } } },
-                    y: { grid: { display: false }, ticks: { color: '#fff', font: { size: 9 } } }
+                    x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#fff', font: { size: 8 } } },
+                    y: { grid: { display: false }, ticks: { color: '#fff', font: { size: 8 } } }
                 }
             }
         });
