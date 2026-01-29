@@ -17,10 +17,10 @@
 
 ---
 
-### 2. EC - Envase (Encaixotadora) | Finalização implementação caixas de comando extras - Provitec
+### 2. EC - Envase (Encaixotadora) | Finalização implementação caixas de comando extras - Provtec
 **Tipo:** Acompanhamento  
 **Status:** 🔄 Em andamento  
-**Descrição:** Acompanhamento da equipe Provitec durante a finalização da implementação de caixas de comando extras na encaixotadora. Atividades realizadas:
+**Descrição:** Acompanhamento da equipe Provtec durante a finalização da implementação de caixas de comando extras na encaixotadora. Atividades realizadas:
 - **Trabalho elétrico:** Instalação física das novas caixas de comando (realizado pela equipe elétrica)
 - **Automação:** Acompanhamento das mudanças e integração com o sistema existente
 - **I/O de comando:** Apontamento e configuração do novo I/O para ligar e parar a máquina
@@ -68,7 +68,7 @@
 - Monitorar o comportamento do sistema após as correções implementadas.
 - Validar em produção a eficácia das melhorias (clear de falhas, sensores do indexador, fins de curso).
 - Consolidar documentação técnica de todas as modificações realizadas na encaixotadora.
-- Continuar acompanhamento da Provitec para finalização completa do projeto.
+- Continuar acompanhamento da Provtec para finalização completa do projeto.
 
 ---
 

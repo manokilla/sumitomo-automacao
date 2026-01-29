@@ -17,10 +17,10 @@
 
 ---
 
-### 2. EC - Envase (Encaixotadora) | Acompanhamento equipe Provitec - ajustes IHM
+### 2. EC - Envase (Encaixotadora) | Acompanhamento equipe Provtec - ajustes IHM
 **Tipo:** Acompanhamento  
 **Status:** 🔄 Em andamento  
-**Descrição:** Acompanhamento da equipe Provitec durante ajustes na Interface Homem-Máquina (IHM) da encaixotadora, visando melhorias na usabilidade e feedback visual para os operadores.
+**Descrição:** Acompanhamento da equipe Provtec durante ajustes na Interface Homem-Máquina (IHM) da encaixotadora, visando melhorias na usabilidade e feedback visual para os operadores.
 
 ---
 
@@ -45,14 +45,14 @@
 ## 🔧 OBSERVAÇÕES TÉCNICAS
 
 - A liberação da receita Tempest via CLP foi realizada com sucesso, permitindo maior flexibilidade operacional na planta EW.
-- O acompanhamento da Provitec na encaixotadora continua, com foco em melhorias na IHM para facilitar a operação.
+- O acompanhamento da Provtec na encaixotadora continua, com foco em melhorias na IHM para facilitar a operação.
 - TIA Portal V18 instalado e operacional, pronto para programação e manutenção dos equipamentos Siemens.
 
 ---
 
 ## 📅 PRÓXIMOS PASSOS
 
-- Continuar acompanhamento da equipe Provitec nos ajustes da IHM da encaixotadora (EC).
+- Continuar acompanhamento da equipe Provtec nos ajustes da IHM da encaixotadora (EC).
 - Iniciar testes práticos com o TIA Portal V18 em programações futuras.
 - Monitorar o funcionamento da receita Tempest liberada na planta EW.
 

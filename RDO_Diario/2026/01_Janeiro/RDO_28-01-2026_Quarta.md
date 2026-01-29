@@ -15,7 +15,7 @@
 **Status:** 🔄 Em andamento  
 **Descrição:** Continuidade dos ajustes na encaixotadora, com foco em três frentes principais:
 - **Alarmes 20L:** Configuração e ajuste de alarmes específicos para embalagens de 20 litros
-- **M08:** Ajustes no módulo M08 do sistema
+- **M08:** Ajustes no motor M08 do sistema
 - **Armador de caixas:** Otimização do sistema de armação automática de caixas para melhorar eficiência e reduzir paradas
 
 ---
@@ -35,7 +35,7 @@
 
 - Os ajustes na encaixotadora são parte de um projeto maior de otimização do processo de envase.
 - Os alarmes de 20L estão sendo parametrizados para melhorar a detecção de falhas e reduzir alarmes falsos.
-- O módulo M08 requer ajustes finos para sincronização com outros componentes da linha.
+- O motor M08 requer ajustes finos para sincronização com outros componentes da linha.
 - O armador de caixas apresenta oportunidades de melhoria na velocidade e confiabilidade da operação.
 
 ---
