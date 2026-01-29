@@ -550,6 +550,210 @@
             background: rgba(46, 117, 182, 0.5);
             border-radius: 3px;
         }
+
+        /* Navegação por Abas */
+        .tabs-nav {
+            background: rgba(30, 58, 95, 0.3);
+            padding: 0 30px;
+            display: flex;
+            gap: 10px;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+            flex-shrink: 0;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: rgba(255,255,255,0.6);
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .tab-btn:hover {
+            color: rgba(255,255,255,0.9);
+            background: rgba(255,255,255,0.05);
+        }
+
+        .tab-btn.active {
+            color: #5DADE2;
+            border-bottom-color: #5DADE2;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        /* Tarefas & Lembretes */
+        .tasks-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .tasks-column {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            overflow-y: auto;
+        }
+
+        .task-section {
+            background: linear-gradient(145deg, #1e3a5f 0%, #152a42 100%);
+            border-radius: 10px;
+            padding: 18px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .task-section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .task-section-title {
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .task-count {
+            background: rgba(93, 173, 226, 0.2);
+            color: #5DADE2;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .task-card {
+            background: rgba(255,255,255,0.03);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-left: 4px solid;
+            transition: all 0.3s;
+        }
+
+        .task-card:hover {
+            background: rgba(255,255,255,0.06);
+            transform: translateX(3px);
+        }
+
+        .task-card.urgente { border-left-color: #EC7063; }
+        .task-card.alta { border-left-color: #F4D03F; }
+        .task-card.media { border-left-color: #5DADE2; }
+        .task-card.baixa { border-left-color: #58D68D; }
+
+        .task-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .task-title {
+            font-size: 14px;
+            font-weight: 500;
+            flex: 1;
+        }
+
+        .task-priority {
+            font-size: 10px;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .task-priority.urgente { background: rgba(236, 112, 99, 0.3); color: #EC7063; }
+        .task-priority.alta { background: rgba(244, 208, 63, 0.3); color: #F4D03F; }
+        .task-priority.media { background: rgba(93, 173, 226, 0.3); color: #5DADE2; }
+        .task-priority.baixa { background: rgba(88, 214, 141, 0.3); color: #58D68D; }
+
+        .task-area {
+            font-size: 11px;
+            opacity: 0.6;
+            margin-bottom: 6px;
+        }
+
+        .task-desc {
+            font-size: 12px;
+            opacity: 0.8;
+            line-height: 1.4;
+            margin-bottom: 8px;
+        }
+
+        .task-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            opacity: 0.5;
+        }
+
+        .task-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .task-btn {
+            background: rgba(93, 173, 226, 0.2);
+            border: none;
+            color: #5DADE2;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .task-btn:hover {
+            background: rgba(93, 173, 226, 0.4);
+        }
+
+        .task-btn.complete {
+            background: rgba(88, 214, 141, 0.2);
+            color: #58D68D;
+        }
+
+        .task-btn.complete:hover {
+            background: rgba(88, 214, 141, 0.4);
+        }
+
+        .add-task-btn {
+            background: linear-gradient(90deg, #2E75B6, #5DADE2);
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .add-task-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(93, 173, 226, 0.4);
+        }
     </style>
 </head>
 <body>
@@ -563,19 +767,27 @@
         </div>
     </div>
 
+    <!-- Navegação por Abas -->
+    <div class="tabs-nav">
+        <button class="tab-btn active" onclick="switchTab('atividades')">📊 Atividades</button>
+        <button class="tab-btn" onclick="switchTab('tarefas')">✅ Tarefas & Lembretes</button>
+    </div>
+
     <div class="container">
+        <!-- Aba Atividades -->
+        <div id="tab-atividades" class="tab-content active">
         <!-- Cards -->
         <div class="cards-row">
             <div class="card total">
-                <div class="card-value">7</div>
+                <div class="card-value">10</div>
                 <div class="card-label">Total</div>
             </div>
             <div class="card concluido">
-                <div class="card-value">3</div>
+                <div class="card-value">4</div>
                 <div class="card-label">Concluídas</div>
             </div>
             <div class="card andamento">
-                <div class="card-value">4</div>
+                <div class="card-value">6</div>
                 <div class="card-label">Em Andamento</div>
             </div>
             <div class="card atrasado">
@@ -643,7 +855,7 @@
                                 <tr>
                                     <td>26/01</td>
                                     <td>EC - Envase</td>
-                                    <td>Acompanhamento equipe Provitec - ajustes IHM</td>
+                                    <td>Acompanhamento equipe Provtec - ajustes IHM</td>
                                     <td>Acompanhamento</td>
                                     <td><span class="status-badge status-andamento">Em andamento</span></td>
                                     <td class="sla-ok">✓</td>
@@ -667,7 +879,7 @@
                                 <tr>
                                     <td>27/01</td>
                                     <td>EC - Envase</td>
-                                    <td>Acompanhamento Provitec - documentação</td>
+                                    <td>Acompanhamento Provtec - documentação</td>
                                     <td>Acompanhamento</td>
                                     <td><span class="status-badge status-andamento">Em andamento</span></td>
                                     <td class="sla-ok">✓</td>
@@ -683,8 +895,32 @@
                                 <tr>
                                     <td>28/01</td>
                                     <td>EC - Envase</td>
-                                    <td>Ajustes: alarmes 20L, M08, armador de caixas</td>
+                                    <td>Ajustes: alarmes 20L, motor M08, armador de caixas</td>
                                     <td>Acompanhamento</td>
+                                    <td><span class="status-badge status-andamento">Em andamento</span></td>
+                                    <td class="sla-ok">✓</td>
+                                </tr>
+                                <tr>
+                                    <td>29/01</td>
+                                    <td>H3 - Processo</td>
+                                    <td>Extração backups CLP e Supervisório</td>
+                                    <td>Suporte Técnico</td>
+                                    <td><span class="status-badge status-concluido">Concluído</span></td>
+                                    <td class="sla-ok">✓</td>
+                                </tr>
+                                <tr>
+                                    <td>29/01</td>
+                                    <td>EC - Envase</td>
+                                    <td>Finalização caixas de comando extras - Provtec</td>
+                                    <td>Acompanhamento</td>
+                                    <td><span class="status-badge status-andamento">Em andamento</span></td>
+                                    <td class="sla-ok">✓</td>
+                                </tr>
+                                <tr>
+                                    <td>29/01</td>
+                                    <td>EC - Envase</td>
+                                    <td>Testes embalagens receita 10L</td>
+                                    <td>Testes</td>
                                     <td><span class="status-badge status-andamento">Em andamento</span></td>
                                     <td class="sla-ok">✓</td>
                                 </tr>
@@ -721,7 +957,7 @@
                             <div class="ranking-area">EC - Envase</div>
                             <div class="ranking-sub">Encaixotadora</div>
                         </div>
-                        <div class="ranking-count">3</div>
+                        <div class="ranking-count">6</div>
                     </div>
                     <div class="ranking-item">
                         <div class="ranking-pos">2</div>
@@ -742,6 +978,14 @@
                     <div class="ranking-item">
                         <div class="ranking-pos">4</div>
                         <div class="ranking-info">
+                            <div class="ranking-area">H3 - Processo</div>
+                            <div class="ranking-sub">Herbicidas 3</div>
+                        </div>
+                        <div class="ranking-count">1</div>
+                    </div>
+                    <div class="ranking-item">
+                        <div class="ranking-pos">5</div>
+                        <div class="ranking-info">
                             <div class="ranking-area">Multi-plantas</div>
                             <div class="ranking-sub">Planejamento geral</div>
                         </div>
@@ -758,6 +1002,56 @@
                 </div>
             </div>
         </div>
+        </div>
+        <!-- Fim Aba Atividades -->
+
+        <!-- Aba Tarefas & Lembretes -->
+        <div id="tab-tarefas" class="tab-content">
+            <div class="tasks-container">
+                <!-- Coluna Esquerda -->
+                <div class="tasks-column">
+                    <!-- Tarefas Urgentes -->
+                    <div class="task-section">
+                        <div class="task-section-header">
+                            <div class="task-section-title">🔥 Tarefas Urgentes</div>
+                            <span class="task-count" id="count-urgentes">0</span>
+                        </div>
+                        <div id="tasks-urgentes"></div>
+                    </div>
+
+                    <!-- Tarefas Em Andamento -->
+                    <div class="task-section">
+                        <div class="task-section-header">
+                            <div class="task-section-title">🔄 Em Andamento</div>
+                            <span class="task-count" id="count-andamento">0</span>
+                        </div>
+                        <div id="tasks-andamento"></div>
+                    </div>
+                </div>
+
+                <!-- Coluna Direita -->
+                <div class="tasks-column">
+                    <!-- Tarefas Pendentes -->
+                    <div class="task-section">
+                        <div class="task-section-header">
+                            <div class="task-section-title">⏳ Pendentes</div>
+                            <span class="task-count" id="count-pendentes">0</span>
+                        </div>
+                        <div id="tasks-pendentes"></div>
+                    </div>
+
+                    <!-- Melhorias Identificadas -->
+                    <div class="task-section">
+                        <div class="task-section-header">
+                            <div class="task-section-title">💡 Melhorias Identificadas</div>
+                            <span class="task-count" id="count-melhorias">0</span>
+                        </div>
+                        <div id="tasks-melhorias"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Fim Aba Tarefas -->
     </div>
 
     <div class="footer">
@@ -769,16 +1063,21 @@
         const activities = {
             '2026-01-26': [
                 { area: 'EW - Processo', areaFull: 'Emulsão Óleo em Água', desc: 'Liberação receita Tempest via CLP', tipo: 'Suporte Técnico', status: 'concluido' },
-                { area: 'EC - Envase', areaFull: 'Encaixotadora', desc: 'Acompanhamento equipe Provitec - ajustes IHM', tipo: 'Acompanhamento', status: 'andamento' },
+                { area: 'EC - Envase', areaFull: 'Encaixotadora', desc: 'Acompanhamento equipe Provtec - ajustes IHM', tipo: 'Acompanhamento', status: 'andamento' },
                 { area: 'Est. Trabalho', areaFull: 'Ambiente de Desenvolvimento', desc: 'Instalação TIA Portal V18', tipo: 'Infraestrutura', status: 'concluido' }
             ],
             '2026-01-27': [
                 { area: 'H2 - Processo', areaFull: 'Herbicidas 2', desc: 'Substituição fonte conversor de fibra óptica', tipo: 'Manutenção', status: 'concluido' },
-                { area: 'EC - Envase', areaFull: 'Encaixotadora', desc: 'Acompanhamento Provitec - documentação', tipo: 'Acompanhamento', status: 'andamento' },
+                { area: 'EC - Envase', areaFull: 'Encaixotadora', desc: 'Acompanhamento Provtec - documentação', tipo: 'Acompanhamento', status: 'andamento' },
                 { area: 'Multi-plantas', areaFull: 'DMA / H1 / SC1 / EC', desc: 'Análise prévia lista de melhorias', tipo: 'Planejamento', status: 'andamento' }
             ],
             '2026-01-28': [
-                { area: 'EC - Envase', areaFull: 'Encaixotadora', desc: 'Ajustes: alarmes 20L, M08, armador de caixas', tipo: 'Acompanhamento', status: 'andamento' }
+                { area: 'EC - Envase', areaFull: 'Encaixotadora', desc: 'Ajustes: alarmes 20L, motor M08, armador de caixas', tipo: 'Acompanhamento', status: 'andamento' }
+            ],
+            '2026-01-29': [
+                { area: 'H3 - Processo', areaFull: 'Herbicidas 3', desc: 'Implementação de status de operação', tipo: 'Desenvolvimento', status: 'concluido' },
+                { area: 'EC - Envase', areaFull: 'Encaixotadora', desc: 'Correção clear de falhas + implementação falhas indexador + montagem status fins de curso', tipo: 'Desenvolvimento', status: 'concluido' },
+                { area: 'EC - Envase', areaFull: 'Encaixotadora', desc: 'Acompanhamento Provtec - continuidade ajustes', tipo: 'Acompanhamento', status: 'andamento' }
             ]
         };
 
@@ -929,6 +1228,139 @@
                 }
             }
         });
+
+        // Sistema de Tarefas & Lembretes
+        function switchTab(tabName) {
+            // Atualizar botões
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Atualizar conteúdo
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            document.getElementById(`tab-${tabName}`).classList.add('active');
+            
+            if (tabName === 'tarefas') {
+                loadTasks();
+            }
+        }
+
+        // Dados iniciais de tarefas
+        const initialTasks = [
+            {
+                id: 1,
+                title: 'BioRacionais - Download CLP Embaladora',
+                area: 'BioRacionais',
+                desc: 'Realizar download do programa do CLP da embaladora. Tarefa urgente que deve ser feita o quanto antes.',
+                priority: 'urgente',
+                status: 'urgente',
+                date: '29/01/2026'
+            },
+            {
+                id: 2,
+                title: 'DMA - Implementar Intertravamento de Segurança',
+                area: 'DMA',
+                desc: 'Corrigir lógica para que bomba pare automaticamente quando válvula falhar por falta de ar comprimido.',
+                priority: 'alta',
+                status: 'melhoria',
+                date: '29/01/2026',
+                type: 'Segurança Crítica'
+            },
+            {
+                id: 3,
+                title: 'SC1 - Implementar Proteção do Moinho',
+                area: 'SC1',
+                desc: 'Criar lógica de zelo para proteger moinho contra acionamentos excessivos em curto período de tempo.',
+                priority: 'media',
+                status: 'melhoria',
+                date: '29/01/2026',
+                type: 'Manutenção Preventiva'
+            }
+        ];
+
+        function loadTasks() {
+            let tasks = JSON.parse(localStorage.getItem('sumitomo_tasks') || '[]');
+            
+            // Se não houver tarefas, carregar as iniciais
+            if (tasks.length === 0) {
+                tasks = initialTasks;
+                localStorage.setItem('sumitomo_tasks', JSON.stringify(tasks));
+            }
+            
+            renderTasks(tasks);
+        }
+
+        function renderTasks(tasks) {
+            // Limpar seções
+            document.getElementById('tasks-urgentes').innerHTML = '';
+            document.getElementById('tasks-andamento').innerHTML = '';
+            document.getElementById('tasks-pendentes').innerHTML = '';
+            document.getElementById('tasks-melhorias').innerHTML = '';
+            
+            let counts = { urgentes: 0, andamento: 0, pendentes: 0, melhorias: 0 };
+            
+            tasks.forEach(task => {
+                const taskHTML = `
+                    <div class="task-card ${task.priority}">
+                        <div class="task-header">
+                            <div class="task-title">${task.title}</div>
+                            <span class="task-priority ${task.priority}">${task.priority}</span>
+                        </div>
+                        <div class="task-area">🏭 ${task.area}${task.type ? ' | ' + task.type : ''}</div>
+                        <div class="task-desc">${task.desc}</div>
+                        <div class="task-footer">
+                            <span>📅 ${task.date}</span>
+                            <div class="task-actions">
+                                ${task.status !== 'melhoria' ? `<button class="task-btn complete" onclick="completeTask(${task.id})">✓ Concluir</button>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                if (task.status === 'urgente') {
+                    document.getElementById('tasks-urgentes').innerHTML += taskHTML;
+                    counts.urgentes++;
+                } else if (task.status === 'andamento') {
+                    document.getElementById('tasks-andamento').innerHTML += taskHTML;
+                    counts.andamento++;
+                } else if (task.status === 'pendente') {
+                    document.getElementById('tasks-pendentes').innerHTML += taskHTML;
+                    counts.pendentes++;
+                } else if (task.status === 'melhoria') {
+                    document.getElementById('tasks-melhorias').innerHTML += taskHTML;
+                    counts.melhorias++;
+                }
+            });
+            
+            // Atualizar contadores
+            document.getElementById('count-urgentes').textContent = counts.urgentes;
+            document.getElementById('count-andamento').textContent = counts.andamento;
+            document.getElementById('count-pendentes').textContent = counts.pendentes;
+            document.getElementById('count-melhorias').textContent = counts.melhorias;
+            
+            // Mensagens quando vazio
+            if (counts.urgentes === 0) {
+                document.getElementById('tasks-urgentes').innerHTML = '<div style="text-align:center;opacity:0.5;padding:20px;font-size:12px;">✅ Nenhuma tarefa urgente</div>';
+            }
+            if (counts.andamento === 0) {
+                document.getElementById('tasks-andamento').innerHTML = '<div style="text-align:center;opacity:0.5;padding:20px;font-size:12px;">💭 Nenhuma tarefa em andamento</div>';
+            }
+            if (counts.pendentes === 0) {
+                document.getElementById('tasks-pendentes').innerHTML = '<div style="text-align:center;opacity:0.5;padding:20px;font-size:12px;">✅ Nenhuma tarefa pendente</div>';
+            }
+            if (counts.melhorias === 0) {
+                document.getElementById('tasks-melhorias').innerHTML = '<div style="text-align:center;opacity:0.5;padding:20px;font-size:12px;">💡 Nenhuma melhoria identificada</div>';
+            }
+        }
+
+        function completeTask(taskId) {
+            let tasks = JSON.parse(localStorage.getItem('sumitomo_tasks') || '[]');
+            tasks = tasks.filter(t => t.id !== taskId);
+            localStorage.setItem('sumitomo_tasks', JSON.stringify(tasks));
+            loadTasks();
+        }
+
+        // Carregar tarefas ao iniciar
+        loadTasks();
     </script>
 </body>
 </html>
