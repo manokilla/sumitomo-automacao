@@ -1,6 +1,6 @@
 # Relatório Diário de Ocorrências (RDO)
 
-**Data:** 03 de fevereiro de 2026 (Segunda-feira)  
+**Data:** 02 de fevereiro de 2026 (Segunda-feira)  
 **Responsável:** Diogo Moura  
 **Empresa:** Sumitomo Chemical  
 **Período:** Integral
@@ -100,5 +100,5 @@
 
 ---
 
-**Relatório gerado em:** 03/02/2026  
+**Relatório gerado em:** 02/02/2026  
 **Assinatura Digital:** Diogo Moura
