@@ -111,14 +111,13 @@
         .card.atrasado .card-value { color: #EC7063; }
         .card.prazo .card-value { color: #58D68D; }
 
-        /* Layout Principal - 1 coluna centralizada */
+        /* Layout Principal - 3 colunas */
         .main-layout {
-            display: flex;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: 280px 1fr 300px;
             gap: 15px;
             flex: 1;
             overflow: hidden;
-            padding: 0 20px;
         }
 
         /* Coluna Esquerda - Calendário Compacto */
@@ -127,8 +126,6 @@
             flex-direction: column;
             gap: 12px;
             overflow: hidden;
-            max-width: 600px;
-            width: 100%;
         }
 
         /* Calendário Compacto */
@@ -779,7 +776,29 @@
     <div class="container">
         <!-- Aba Atividades -->
         <div id="tab-atividades" class="tab-content active">
-
+        <!-- Cards -->
+        <div class="cards-row">
+            <div class="card total">
+                <div class="card-value">10</div>
+                <div class="card-label">Total</div>
+            </div>
+            <div class="card concluido">
+                <div class="card-value">4</div>
+                <div class="card-label">Concluídas</div>
+            </div>
+            <div class="card andamento">
+                <div class="card-value">6</div>
+                <div class="card-label">Em Andamento</div>
+            </div>
+            <div class="card atrasado">
+                <div class="card-value">0</div>
+                <div class="card-label">Fora do SLA</div>
+            </div>
+            <div class="card prazo">
+                <div class="card-value">100%</div>
+                <div class="card-label">No Prazo</div>
+            </div>
+        </div>
 
         <div class="main-layout">
             <!-- Coluna Esquerda -->
@@ -809,7 +828,77 @@
             <!-- Coluna Central - Tabela -->
 
 
+            <!-- Coluna Direita - Gráficos e Ranking -->
+            <div class="right-column">
+                <!-- Gráfico Status -->
+                <div class="panel-box">
+                    <div class="panel-title">📊 Status das Atividades</div>
+                    <div class="chart-container">
+                        <canvas id="statusChart"></canvas>
+                    </div>
+                </div>
 
+                <!-- Gráfico Áreas -->
+                <div class="panel-box">
+                    <div class="panel-title">🏭 Atividades por Área</div>
+                    <div class="chart-container">
+                        <canvas id="areaChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Ranking -->
+                <div class="panel-box ranking-section">
+                    <div class="panel-title">🏆 Áreas Atendidas</div>
+                    <div class="ranking-item">
+                        <div class="ranking-pos">1</div>
+                        <div class="ranking-info">
+                            <div class="ranking-area">EC - Envase</div>
+                            <div class="ranking-sub">Encaixotadora</div>
+                        </div>
+                        <div class="ranking-count">6</div>
+                    </div>
+                    <div class="ranking-item">
+                        <div class="ranking-pos">2</div>
+                        <div class="ranking-info">
+                            <div class="ranking-area">EW - Processo</div>
+                            <div class="ranking-sub">Emulsão Óleo em Água</div>
+                        </div>
+                        <div class="ranking-count">1</div>
+                    </div>
+                    <div class="ranking-item">
+                        <div class="ranking-pos">3</div>
+                        <div class="ranking-info">
+                            <div class="ranking-area">H2 - Processo</div>
+                            <div class="ranking-sub">Herbicidas 2</div>
+                        </div>
+                        <div class="ranking-count">1</div>
+                    </div>
+                    <div class="ranking-item">
+                        <div class="ranking-pos">4</div>
+                        <div class="ranking-info">
+                            <div class="ranking-area">H3 - Processo</div>
+                            <div class="ranking-sub">Herbicidas 3</div>
+                        </div>
+                        <div class="ranking-count">1</div>
+                    </div>
+                    <div class="ranking-item">
+                        <div class="ranking-pos">5</div>
+                        <div class="ranking-info">
+                            <div class="ranking-area">Multi-plantas</div>
+                            <div class="ranking-sub">Planejamento geral</div>
+                        </div>
+                        <div class="ranking-count">1</div>
+                    </div>
+                    <div class="ranking-item">
+                        <div class="ranking-pos">5</div>
+                        <div class="ranking-info">
+                            <div class="ranking-area">Est. Trabalho</div>
+                            <div class="ranking-sub">Infraestrutura</div>
+                        </div>
+                        <div class="ranking-count">1</div>
+                    </div>
+                </div>
+            </div>
         </div>
         </div>
         <!-- Fim Aba Atividades -->
@@ -903,9 +992,8 @@
             ]
         };
 
-        const today = new Date();
-        let currentMonth = today.getMonth();
-        let currentYear = today.getFullYear();
+        let currentMonth = 0;
+        let currentYear = 2026;
         let selectedDate = null;
 
         function renderCalendar() {
