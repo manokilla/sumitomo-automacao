@@ -1,7 +1,7 @@
 # Relatório Semanal de Atividades - Automação
 
 **Técnico:** Diogo Moura  
-**Período:** 02 a 07 de Fevereiro de 2026  
+**Período:** 02 a 06 de Fevereiro de 2026  
 **Empresa:** Sumitomo Chemical do Brasil
 
 ---
@@ -214,4 +214,4 @@ Iniciado trabalho de integração entre plantas (SC2/EW) através de mapeamento 
 ---
 
 **Relatório elaborado por:** Diogo Moura  
-**Data de elaboração:** 07/02/2026
+**Data de elaboração:** 06/02/2026
