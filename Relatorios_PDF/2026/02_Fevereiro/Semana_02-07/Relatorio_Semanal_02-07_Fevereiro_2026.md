@@ -2,7 +2,7 @@
 
 **Técnico:** Diogo Moura  
 **Período:** 02 a 07 de Fevereiro de 2026  
-**Empresa( Brasil
+**Empresa:** Sumitomo Chemical do Brasil
 
 ---
 
@@ -241,11 +241,7 @@ Semana com foco em desenvolvimento de integrações entre plantas (SC2/EW), múl
 ## Pendências para Próxima Semana
 
 1. Concluir mapeamento de messages SC2/EW para sistema Boiler
-2. Finalizar configuração e testes da plataforma Invenze
-3. Resolver problema físico da segunda catraca (mau contato RJ45)
-4. Validar funcionamento do ajuste de intertravamento da bomba BN60143
-5. Aguardar decisão KMCC sobre alteração de RPM de agitador
-6. Finalizar mapeamento do sistema Boiler multi-plantas
+2. Finalizar mapeamento do sistema Boiler multi-plantas
 
 ---
 
