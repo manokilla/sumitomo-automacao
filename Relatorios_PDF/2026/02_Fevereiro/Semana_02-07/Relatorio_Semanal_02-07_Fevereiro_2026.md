@@ -11,9 +11,9 @@
 Semana com foco em desenvolvimento de integrações entre plantas (SC2/EW), múltiplas melhorias implementadas na planta EW, e resolução de problemas de infraestrutura. Foram realizadas atividades de análise técnica, desenvolvimento de automações, ajustes operacionais e configuração de sistemas.
 
 **Indicadores da Semana:**
-- **Total de atividades:** 23
-- **Atividades concluídas:** 11 (48%)
-- **Atividades em andamento:** 12 (52%)
+- **Total de atividades:** 18
+- **Atividades concluídas:** 10 (56%)
+- **Atividades em andamento:** 8 (44%)
 - **Áreas atendidas:** 5 diferentes plantas/sistemas
 
 ---
@@ -87,7 +87,7 @@ Semana com foco em desenvolvimento de integrações entre plantas (SC2/EW), múl
 #### 2. Infraestrutura (Invenze)
 **Atividade:** Configuração plataforma Invenze  
 **Tipo:** Configuração / Integração  
-**Status:** 🔄 Em andamento
+**Status:** ✅ Concluído
 
 #### 3. Boiler (Multi-plantas)
 **Atividade:** Continuação do mapeamento do sistema  
@@ -95,19 +95,14 @@ Semana com foco em desenvolvimento de integrações entre plantas (SC2/EW), múl
 **Status:** 🔄 Em andamento
 
 #### 4. EW - Emulsão
-**Atividade:** Ajuste de pressão bomba tanque de gel (Mixer 60132)  
+**Atividade:** Ajuste de pressão bomba tanque de gel (Mixer 60132): 3 bar → 4 bar  
 **Tipo:** Ajuste / Parametrização  
 **Status:** ✅ Concluído
 
 #### 5. EW - Emulsão
-**Atividade:** Desenvolvimento de lógica de controle de agitadores 3098 e 200342  
+**Atividade:** Lógica de controle de agitadores 3098 e 200342 (desligamento manual)  
 **Tipo:** Desenvolvimento / Automação  
 **Status:** ✅ Concluído
-
-#### 6. EW - Emulsão
-**Atividade:** Análise de alteração de RPM de agitador  
-**Tipo:** Análise / Planejamento  
-**Status:** 🔄 Em andamento
 
 ---
 
@@ -119,12 +114,12 @@ Semana com foco em desenvolvimento de integrações entre plantas (SC2/EW), múl
 **Status:** 🔄 Em andamento
 
 #### 2. EW - Emulsão
-**Atividade:** Ajuste de pressão bomba tanque de gel (PT30156)  
+**Atividade:** Ajuste de pressão bomba tanque de gel (PT30156): 3 bar → 4 bar  
 **Tipo:** Ajuste / Parametrização  
 **Status:** ✅ Concluído
 
 #### 3. EW - Emulsão
-**Atividade:** Redução de RPM mínimo do motor MMX-60131  
+**Atividade:** Redução de RPM mínimo do motor MMX-60131 (25 Hz → 17 Hz)  
 **Tipo:** Desenvolvimento / Parametrização  
 **Status:** ✅ Concluído
 
@@ -170,7 +165,7 @@ Semana com foco em desenvolvimento de integrações entre plantas (SC2/EW), múl
 - Levantamento e estudo de lógica
 - Mapeamento de sistema
 
-### Infraestrutura - 5 atividades
+### Infraestrutura - 4 atividades
 - Atualização de firmware Control ID
 - Configuração plataforma Invenze
 - Resolução de problemas de catracas
@@ -187,54 +182,17 @@ Semana com foco em desenvolvimento de integrações entre plantas (SC2/EW), múl
 ## Destaques da Semana
 
 ### ✅ Principais Realizações
-
-1. **Melhorias na planta EW:** Múltiplas implementações focadas em eficiência operacional e controle do operador
-   - Implementação de lógica anti-golpe de aríete (válvulas tanque de goma)
-   - Ajustes em golpes de aríete (transferência de goma)
-   - Habilitação de desligamento manual de agitadores (MMX-3098 e MMX-200342)
-
-2. **Resolução de problema crítico - Motor MMX-60131:** Ajuste no inversor PowerFlex 753 (mudança de Modo 1 SV para Modo 0 V/Hz) permitiu redução de frequência mínima de 25 Hz para 17 Hz, resolvendo limitação operacional
-
+1. **Resolução de problema crítico - Motor MMX-60131:** Ajuste no inversor PowerFlex 753 (mudança de Modo 1 SV para Modo 0 V/Hz) permitiu redução de frequência mínima de 25 Hz para 17 Hz, resolvendo limitação operacional
+2. **Melhorias na planta EW:** Múltiplas implementações focadas em eficiência operacional e controle do operador
 3. **Verificações de segurança:** 15 intertravamentos verificados na planta EW (células de carga, bombas, válvulas)
-
 4. **Desenvolvimento Node-RED:** Aplicação de contagem de pallets para SC1 desenvolvida e concluída
-
-5. **Levantamentos técnicos:** Análises detalhadas de sistemas H2 (bombas DMA/TEA) e Boiler (multi-plantas)
+5. **Configuração Invenze:** Plataforma de gerenciamento de catracas configurada e integrada
 
 ### 🔄 Trabalhos em Andamento
-
 1. **Integração SC2/EW:** Mapeamento de messages para comunicação entre CLPs (Boiler)
-2. **Infraestrutura:** Configuração Invenze e resolução de problemas de catracas
-3. **Boiler:** Mapeamento e análise de sistema multi-plantas
-4. **EW:** Avaliação de intertravamento bomba BN60143 e análise de RPM de agitador
-
----
-
-## Melhorias Implementadas - Detalhamento
-
-### Planta EW - Relatório Técnico (06/02/2026)
-
-#### 1. Ajuste de Pressão - PT30156
-- **Equipamento:** Pressostato PT30156
-- **Alteração:** 3 bar → 4 bar
-- **Status:** Implementado
-
-#### 2. Redução de RPM Mínimo - Motor MMX-60131
-- **Problema:** Frequência mínima travada em 25 Hz
-- **Causa:** Parâmetro 35 do PowerFlex 753 em Modo 1 (Sensorless Vector)
-- **Solução:** Mudança para Modo 0 (V/Hz) com orientação Netzsch
-- **Resultado:** Frequência mínima agora responde a 17 Hz (RPM: 250 → 170)
-- **Status:** Implementado
-
-#### 3. Habilitação de Desligamento - Agitadores MMX-3098 e MMX-200342
-- **Problema:** Sistema forçava modo Automático, impedindo desligamento manual
-- **Solução:** Modificação da lógica para respeitar modo Manual
-- **Resultado:** Operador consegue manter agitador desligado manualmente
-- **Status:** Implementado
-
-#### 4. Avaliação de Intertravamento - Bomba BN60143
-- **Objetivo:** Validar proteção por variação de volume
-- **Status:** Em avaliação
+2. **Boiler:** Mapeamento e análise de sistema multi-plantas
+3. **Infraestrutura:** Atualização firmware Control ID e resolução de problemas de catracas
+4. **EW:** Avaliação de intertravamento bomba BN60143
 
 ---
 
