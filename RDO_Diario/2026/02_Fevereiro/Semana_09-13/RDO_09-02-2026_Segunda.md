@@ -34,9 +34,9 @@
 
 ---
 
-### 2. Manutenção | Instalação e configuração de novo inversor de frequência
+### 2. H1 - Herbicidas 1 | Instalação e configuração de novo inversor de frequência
 
-**Área:** Manutenção  
+**Área:** H1 - Herbicidas 1  
 **Planta/Equipamento:** Inversor de frequência (substituição)  
 **Tipo de Atividade:** Manutenção / Instalação  
 
@@ -72,7 +72,7 @@
 
 **Áreas atendidas:**
 - H3 - Herbicidas 3 (1 atividade)
-- Manutenção (1 atividade)
+- H1 - Herbicidas 1 (1 atividade)
 
 **Destaques:**
 - Levantamento de infraestrutura para projeto de válvulas pneumáticas
