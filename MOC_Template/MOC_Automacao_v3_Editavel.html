@@ -39,9 +39,14 @@
 
   /* PRINT STYLES */
   @media print {
+    * {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      color-adjust: exact !important;
+    }
     body {
       background: white;
-      font-size: 10pt;
+      font-size: 9pt;
     }
     .page-container {
       max-width: none;
@@ -52,15 +57,47 @@
     .no-print {
       display: none !important;
     }
+    /* Barra preta do MOC ID - forçar background */
+    .moc-id-bar {
+      background: var(--sumitomo-black) !important;
+      color: white !important;
+    }
+    .moc-id-bar input[type="text"],
+    .moc-id-bar .moc-meta select {
+      color: white !important;
+      border-bottom: none !important;
+    }
+    /* Círculos vermelhos das seções */
+    .section-number {
+      background: var(--sumitomo-red) !important;
+      color: white !important;
+    }
+    /* Risk bar backgrounds */
+    .risk-low { background: #E8F5E9 !important; }
+    .risk-medium { background: #FFF8E1 !important; }
+    .risk-high { background: #FFEBEE !important; }
+    .risk-critical { background: #F3E5F5 !important; }
+    .risk-level.selected {
+      outline: 3px solid var(--sumitomo-black) !important;
+    }
+    /* Classification selected */
+    .classification-item.selected {
+      border-color: var(--sumitomo-red) !important;
+      background: #FFF0F0 !important;
+    }
+    /* Checkbox checked background */
+    input[type="checkbox"]:checked {
+      background: var(--sumitomo-red) !important;
+      border-color: var(--sumitomo-red) !important;
+    }
     /* Remove backgrounds de input para impressão limpa */
-    input[type="text"],
-    input[type="date"],
-    textarea,
-    select {
+    .form-field input[type="text"],
+    .form-field input[type="date"],
+    .form-field select,
+    .text-area textarea,
+    .sig-line input[type="text"] {
       border: none !important;
-      background: transparent !important;
       box-shadow: none !important;
-      padding: 0 !important;
       -webkit-appearance: none;
       outline: none !important;
     }
@@ -83,12 +120,8 @@
       border-radius: 3px;
       position: relative;
     }
-    input[type="checkbox"]:checked {
-      background: var(--sumitomo-red);
-      border-color: var(--sumitomo-red);
-    }
     input[type="checkbox"]:checked::after {
-      content: '✓';
+      content: '\2713';
       color: white;
       font-size: 10px;
       font-weight: 700;
@@ -107,23 +140,169 @@
       position: relative;
     }
     input[type="radio"]:checked {
-      border-color: var(--sumitomo-red);
+      border-color: var(--sumitomo-red) !important;
     }
     input[type="radio"]:checked::after {
       content: '';
       width: 6px;
       height: 6px;
-      background: var(--sumitomo-red);
+      background: var(--sumitomo-red) !important;
       border-radius: 50%;
       position: absolute;
       top: 1px;
       left: 1px;
     }
+    /* CONTROLE DE QUEBRA DE PÁGINA */
+    .page-break-print {
+      page-break-before: always;
+      break-before: page;
+    }
+    /* Evitar quebra no meio de caixas de assinatura */
+    .signature-box {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .section-header {
+      page-break-after: avoid;
+      break-after: avoid;
+    }
+    /* Compactar para caber em 2 páginas A4 */
+    .section {
+      margin-bottom: 4px;
+    }
+    .form-grid {
+      gap: 2px;
+    }
+    .form-field {
+      padding: 2px 5px;
+    }
+    .form-field label {
+      font-size: 6pt;
+      margin-bottom: 0;
+    }
+    .form-field input, .form-field select {
+      font-size: 8pt;
+      padding: 1px 0;
+    }
+    .text-area {
+      padding: 3px 6px;
+      margin-bottom: 3px;
+    }
+    .text-area label {
+      font-size: 6pt;
+      margin-bottom: 1px;
+    }
+    .text-area textarea {
+      min-height: 15px;
+      max-height: 40px;
+      font-size: 8pt;
+      overflow: hidden;
+    }
+    .classification-grid {
+      gap: 3px;
+      margin-bottom: 3px;
+    }
+    .classification-item {
+      padding: 3px;
+    }
+    .classification-item .icon {
+      font-size: 12pt;
+      margin-bottom: 0;
+    }
+    .classification-item .label {
+      font-size: 6pt;
+    }
+    .risk-bar {
+      margin-bottom: 0;
+    }
+    .risk-level {
+      padding: 2px;
+      font-size: 6.5pt;
+    }
+    .risk-label {
+      font-size: 6pt;
+      margin-bottom: 1px;
+    }
+    .checklist {
+      gap: 1px;
+    }
+    .checklist-item {
+      padding: 1px 0;
+      gap: 5px;
+    }
+    .checklist-item .check-text {
+      font-size: 7.5pt;
+    }
+    .checklist-item input[type="checkbox"] {
+      width: 11px;
+      height: 11px;
+    }
+    .approval-grid {
+      margin: 3px 0;
+      gap: 5px;
+    }
+    .signature-box {
+      padding: 6px 8px;
+    }
+    .signature-box .sig-role {
+      font-size: 6.5pt;
+      margin-bottom: 12px;
+    }
+    .signature-box .sig-line {
+      font-size: 7.5pt;
+    }
+    .signature-grid {
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .header {
+      padding-bottom: 4px;
+      margin-bottom: 4px;
+    }
+    .header-logo {
+      height: 35px;
+    }
+    .header-title h1 {
+      font-size: 14pt;
+    }
+    .header-title p {
+      font-size: 7pt;
+    }
+    .moc-id-bar {
+      padding: 4px 10px;
+      margin-bottom: 6px;
+      font-size: 7.5pt;
+    }
+    .moc-id-bar input[type="text"] {
+      font-size: 8.5pt;
+    }
+    .section-header {
+      margin-bottom: 3px;
+      padding-bottom: 2px;
+    }
+    .section-number {
+      width: 18px;
+      height: 18px;
+      font-size: 8pt;
+    }
+    .section-title {
+      font-size: 9pt;
+    }
+    .version-tag {
+      margin-top: 6px;
+      padding-top: 4px;
+      font-size: 6pt;
+    }
+    /* Quebra de página controlada */
+    .page-break-print {
+      page-break-before: always;
+      break-before: page;
+    }
   }
 
   @page {
     size: A4;
-    margin: 12mm 15mm 18mm 15mm;
+    margin: 10mm 12mm 12mm 12mm;
   }
 
   /* PRINT BUTTON */
