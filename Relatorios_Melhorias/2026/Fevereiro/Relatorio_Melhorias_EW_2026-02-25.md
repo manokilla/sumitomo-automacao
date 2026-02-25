@@ -36,7 +36,7 @@ Foi implementado um intertravamento de segurança nos reatores **R8000, R8001, R
 | Imagem | Descrição |
 |---|---|
 | ![Interlock Ativo](assets_EW/IMG_4687.jpeg) | Tela do supervisório mostrando o intertravamento: quando a válvula de fundo (verde) está aberta, a válvula de nitrogênio da linha amarela (AV00184) fica bloqueada com a mensagem "Interlock: Valv. Fundo Aberta". |
-| ![Faceplate da Válvula](assets_EW/IMG_4686.jpeg) | Detalhe do faceplate mostrando a válvula de fundo em modo Manual (verde) e a indicação de "Interlock" ativo na parte inferior, confirmando que o intertravamento está funcionando. |
+| ![Situação Normal](assets_EW/IMG_4686.jpeg) | Situação normal de operação: válvula de fundo fechada (cinza), permitindo que a válvula de nitrogênio da linha amarela (AV00184) possa ser aberta sem intertravamento. |
 
 | Item | Descrição |
 |---|---|
