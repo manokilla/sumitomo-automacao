@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>MOC - Automação | Sumitomo Chemical (Editável)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+  :root {
+    --sumitomo-red: #E60012;
+    --sumitomo-dark-red: #B8000E;
+    --sumitomo-black: #1A1A1A;
+    --sumitomo-dark-gray: #333333;
+    --sumitomo-gray: #666666;
+    --sumitomo-light-gray: #E8E8E8;
+    --sumitomo-bg: #F5F5F5;
+    --sumitomo-white: #FFFFFF;
+    --border-color: #D0D0D0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--sumitomo-bg);
+    color: var(--sumitomo-black);
+    font-size: 10pt;
+    line-height: 1.4;
+  }
+
+  /* ========== PRINT ========== */
+  @media print {
+    * {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      color-adjust: exact !important;
+    }
+    body { background: white; }
+    .page {
+      max-width: none;
+      margin: 0;
+      padding: 0;
+      box-shadow: none;
+      border: none;
+    }
+    .page-1 {
+      page-break-after: always;
+      break-after: page;
+    }
+    .no-print { display: none !important; }
+    .moc-id-bar {
+      background: var(--sumitomo-black) !important;
+      color: white !important;
+    }
+    .moc-id-bar input[type="text"],
+    .moc-id-bar .moc-meta select,
+    .moc-id-bar span {
+      color: white !important;
+      border-bottom: none !important;
+    }
+    .section-number {
+      background: var(--sumitomo-red) !important;
+      color: white !important;
+    }
+    .risk-low { background: #E8F5E9 !important; }
+    .risk-medium { background: #FFF8E1 !important; }
+    .risk-high { background: #FFEBEE !important; }
+    .risk-critical { background: #F3E5F5 !important; }
+    .risk-level.selected { outline: 3px solid var(--sumitomo-black) !important; }
+    .classification-item.selected {
+      border-color: var(--sumitomo-red) !important;
+      background: #FFF0F0 !important;
+    }
+    input[type="checkbox"]:checked {
+      background: var(--sumitomo-red) !important;
+      border-color: var(--sumitomo-red) !important;
+    }
+    .form-field input[type="text"],
+    .form-field input[type="date"],
+    .form-field select,
+    .text-area textarea,
+    .sig-line input[type="text"] {
+      border: none !important;
+      box-shadow: none !important;
+      -webkit-appearance: none;
+      outline: none !important;
+    }
+    input[type="text"]::-webkit-input-placeholder,
+    textarea::-webkit-input-placeholder {
+      color: transparent !important;
+    }
+    select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+    input[type="checkbox"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 14px;
+      height: 14px;
+      border: 2px solid var(--border-color);
+      border-radius: 3px;
+      position: relative;
+    }
+    input[type="checkbox"]:checked::after {
+      content: '\2713';
+      color: white;
+      font-size: 10px;
+      font-weight: 700;
+      position: absolute;
+      top: -1px;
+      left: 1px;
+    }
+    input[type="radio"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 12px;
+      height: 12px;
+      border: 2px solid var(--border-color);
+      border-radius: 50%;
+      position: relative;
+    }
+    input[type="radio"]:checked {
+      border-color: var(--sumitomo-red) !important;
+    }
+    input[type="radio"]:checked::after {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--sumitomo-red) !important;
+      border-radius: 50%;
+      position: absolute;
+      top: 1px;
+      left: 1px;
+    }
+  }
+
+  @page {
+    size: A4;
+    margin: 8mm 10mm 8mm 10mm;
+  }
+
+  /* ========== SCREEN ========== */
+  .print-bar {
+    max-width: 210mm;
+    margin: 15px auto 0;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  .btn-print {
+    background: var(--sumitomo-red);
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 10pt;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-print:hover { background: var(--sumitomo-dark-red); }
+  .btn-clear {
+    background: var(--sumitomo-dark-gray);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 10pt;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  .btn-clear:hover { background: var(--sumitomo-black); }
+
+  .page {
+    max-width: 210mm;
+    margin: 20px auto;
+    background: white;
+    padding: 10mm 12mm;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    border: 1px solid #ddd;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 6px;
+    border-bottom: 3px solid var(--sumitomo-red);
+    margin-bottom: 6px;
+  }
+  .header-logo { height: 38px; }
+  .header-title { text-align: right; }
+  .header-title h1 {
+    font-size: 15pt;
+    font-weight: 700;
+    color: var(--sumitomo-black);
+    letter-spacing: -0.5px;
+  }
+  .header-title h1 span {
+    color: var(--sumitomo-red);
+    font-style: italic;
+  }
+  .header-title p {
+    font-size: 7pt;
+    color: var(--sumitomo-gray);
+    margin-top: 1px;
+  }
+
+  .moc-id-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--sumitomo-black);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    font-size: 7.5pt;
+  }
+  .moc-id-bar input[type="text"] {
+    background: transparent;
+    border: none;
+    border-bottom: 1px dashed rgba(255,255,255,0.4);
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 9pt;
+    letter-spacing: 1px;
+    width: 180px;
+    outline: none;
+  }
+  .moc-id-bar input[type="text"]::placeholder {
+    color: rgba(255,255,255,0.5);
+    font-weight: 400;
+  }
+  .moc-id-bar .moc-meta {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  .moc-id-bar .moc-meta input[type="text"] {
+    width: 55px;
+    font-size: 7.5pt;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+  .moc-id-bar .moc-meta select {
+    background: transparent;
+    border: none;
+    border-bottom: 1px dashed rgba(255,255,255,0.4);
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 7.5pt;
+    outline: none;
+    cursor: pointer;
+  }
+  .moc-id-bar .moc-meta select option {
+    background: var(--sumitomo-black);
+    color: white;
+  }
+
+  .section { margin-bottom: 6px; }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+    border-bottom: 2px solid var(--sumitomo-red);
+    padding-bottom: 2px;
+  }
+  .section-number {
+    background: var(--sumitomo-red);
+    color: white;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 8.5pt;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-size: 9.5pt;
+    font-weight: 700;
+    color: var(--sumitomo-black);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+  }
+  .form-field {
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 3px 6px;
+    background: var(--sumitomo-white);
+  }
+  .form-field label {
+    display: block;
+    font-size: 6pt;
+    font-weight: 600;
+    color: var(--sumitomo-red);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 1px;
+  }
+  .form-field input[type="text"],
+  .form-field input[type="date"],
+  .form-field select {
+    width: 100%;
+    border: none;
+    border-bottom: 1px dashed var(--border-color);
+    font-family: 'Inter', sans-serif;
+    font-size: 8pt;
+    color: var(--sumitomo-dark-gray);
+    padding: 1px 0;
+    outline: none;
+    background: transparent;
+  }
+  .form-field input[type="text"]:focus,
+  .form-field input[type="date"]:focus,
+  .form-field select:focus {
+    border-bottom-color: var(--sumitomo-red);
+  }
+  .form-field input[type="text"]::placeholder {
+    color: #AAAAAA;
+    font-style: italic;
+    font-size: 7.5pt;
+  }
+  .form-field select {
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23999'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 2px center;
+    padding-right: 15px;
+  }
+
+  .text-area {
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 4px 6px;
+    background: var(--sumitomo-white);
+    margin-bottom: 4px;
+  }
+  .text-area label {
+    display: block;
+    font-size: 6pt;
+    font-weight: 600;
+    color: var(--sumitomo-red);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 1px;
+  }
+  .text-area textarea {
+    width: 100%;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 8pt;
+    color: var(--sumitomo-dark-gray);
+    line-height: 1.3;
+    resize: vertical;
+    outline: none;
+    background: transparent;
+  }
+  .text-area textarea::placeholder {
+    color: #AAAAAA;
+    font-style: italic;
+    font-size: 7.5pt;
+  }
+
+  .classification-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 4px;
+    margin-bottom: 4px;
+  }
+  .classification-item {
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 3px;
+    text-align: center;
+    background: var(--sumitomo-white);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .classification-item:hover {
+    border-color: var(--sumitomo-red);
+    background: #FFF5F5;
+  }
+  .classification-item.selected {
+    border-color: var(--sumitomo-red);
+    background: #FFF0F0;
+  }
+  .classification-item .icon {
+    font-size: 13pt;
+    margin-bottom: 0;
+  }
+  .classification-item .label {
+    font-size: 6pt;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--sumitomo-dark-gray);
+    letter-spacing: 0.3px;
+    line-height: 1.2;
+  }
+  .classification-item input[type="checkbox"] {
+    width: 12px;
+    height: 12px;
+    margin: 2px auto 0;
+    cursor: pointer;
+    accent-color: var(--sumitomo-red);
+  }
+
+  .risk-label {
+    font-size: 6pt;
+    font-weight: 600;
+    color: var(--sumitomo-red);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 2px;
+  }
+  .risk-bar {
+    display: flex;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+  .risk-level {
+    flex: 1;
+    text-align: center;
+    padding: 3px;
+    font-size: 6.5pt;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .risk-level input[type="radio"] { display: none; }
+  .risk-low { background: #E8F5E9; color: #2E7D32; }
+  .risk-medium { background: #FFF8E1; color: #F57F17; }
+  .risk-high { background: #FFEBEE; color: #C62828; }
+  .risk-critical { background: #F3E5F5; color: #6A1B9A; }
+  .risk-level.selected {
+    outline: 3px solid var(--sumitomo-black);
+    outline-offset: -3px;
+    font-weight: 800;
+  }
+
+  .checklist { display: grid; gap: 2px; }
+  .checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+    padding: 1px 0;
+  }
+  .checklist-item input[type="checkbox"] {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+    margin-top: 1px;
+    cursor: pointer;
+    accent-color: var(--sumitomo-red);
+  }
+  .checklist-item .check-text {
+    font-size: 7.5pt;
+    color: var(--sumitomo-dark-gray);
+    line-height: 1.3;
+  }
+
+  .approval-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 6px;
+    margin: 5px 0;
+  }
+  .signature-box {
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 6px 10px;
+    text-align: center;
+    background: var(--sumitomo-white);
+  }
+  .signature-box .sig-role {
+    font-size: 6.5pt;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--sumitomo-red);
+    letter-spacing: 0.3px;
+    margin-bottom: 15px;
+  }
+  .signature-box .sig-line {
+    border-top: 1px solid var(--sumitomo-dark-gray);
+    padding-top: 3px;
+    font-size: 7.5pt;
+    color: var(--sumitomo-dark-gray);
+  }
+  .signature-box .sig-line input[type="text"] {
+    width: 100%;
+    border: none;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 7.5pt;
+    color: var(--sumitomo-dark-gray);
+    outline: none;
+    background: transparent;
+  }
+  .signature-box .sig-line input[type="text"]::placeholder {
+    color: #AAAAAA;
+    font-style: italic;
+  }
+  .signature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 5px;
+  }
+  .version-tag {
+    text-align: center;
+    font-size: 6pt;
+    color: var(--sumitomo-gray);
+    margin-top: 8px;
+    padding-top: 4px;
+    border-top: 1px solid var(--sumitomo-light-gray);
+  }
+</style>
+</head>
+<body>
+
+<!-- BARRA DE AÇÕES -->
+<div class="print-bar no-print">
+  <button class="btn-clear" onclick="limparFormulario()">Limpar Tudo</button>
+  <button class="btn-print" onclick="syncPage2(); window.print()">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    Imprimir / Salvar PDF
+  </button>
+</div>
+
+<!-- ==================== PÁGINA 1 ==================== -->
+<div class="page page-1">
+
+<div class="header">
+  <img src="data:image/png;base64,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" alt="Sumitomo Chemical" class="header-logo">
+  <div class="header-title">
+    <h1>REG<span>10344</span></h1>
+    <p>Management of Change &mdash; Controle de Mudanças</p>
+  </div>
+</div>
+<div class="moc-id-bar">
+  <input type="text" id="moc-number" placeholder="MOC-AUT-2026-001" value="MOC-AUT-2026-001">
+  <div class="moc-meta">
+    <span>Revisão: <input type="text" id="revisao" placeholder="00" value="00" style="width:30px;"></span>
+    <span>Emissão: <input type="text" id="emissao" placeholder="__/__/2026"></span>
+    <span>Status:
+      <select id="status-moc">
+        <option value="Em Elaboração">Em Elaboração</option>
+        <option value="Em Aprovação" selected>Em Aprovação</option>
+        <option value="Aprovado">Aprovado</option>
+        <option value="Reprovado">Reprovado</option>
+        <option value="Concluído">Concluído</option>
+      </select>
+    </span>
+  </div>
+</div>
+
+<!-- SEÇÃO 1: IDENTIFICAÇÃO -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number">1</div>
+    <div class="section-title">Identificação da Mudança</div>
+  </div>
+  <div class="form-grid">
+    <div class="form-field">
+      <label>Planta / Área</label>
+      <select>
+        <option value="">Selecione...</option>
+        <option value="H1">Herbicidas 01</option>
+        <option value="H2">Herbicidas 02</option>
+        <option value="H3">Herbicidas 03</option>
+        <option value="EC">Inseticidas EC</option>
+        <option value="EW">Inseticidas EW</option>
+        <option value="SC1">Inseticidas SC1</option>
+        <option value="SC2">Inseticidas SC2</option>
+        <option value="Biorracionais">Biorracionais</option>
+        <option value="TankFarm">Tank Farm</option>
+        <option value="ETA01">ETA 01</option>
+        <option value="ETA02">ETA 02</option>
+        <option value="SE01">Subestação 01</option>
+        <option value="SE02">Subestação 02</option>
+        <option value="SE03">Subestação 03</option>
+        <option value="Xilol">Xilol</option>
+        <option value="DMA">DMA</option>
+        <option value="Caldeira">Caldeira / Banho Maria</option>
+        <option value="Geral">Geral / Multi-área</option>
+      </select>
+    </div>
+    <div class="form-field">
+      <label>Equipamento / Sistema</label>
+      <input type="text" placeholder="Ex: Motor MMX-60131 / Inversor PowerFlex 753">
+    </div>
+    <div class="form-field">
+      <label>Requisitante / Solicitante</label>
+      <input type="text" placeholder="Nome e cargo do solicitante">
+    </div>
+    <div class="form-field">
+      <label>Origem da Demanda</label>
+      <select>
+        <option value="">Selecione...</option>
+        <option value="Manufatura">Manufatura</option>
+        <option value="Manutenção">Manutenção</option>
+        <option value="Projetos">Projetos</option>
+        <option value="Engenharia">Engenharia</option>
+        <option value="Engenharia">Segurança</option>
+      </select>
+    </div>
+    <div class="form-field">
+      <label>Responsável Técnico</label>
+      <input type="text" value="Diogo Moura — Técnico de Automação">
+    </div>
+    <div class="form-field">
+      <label>Data de Execução</label>
+      <input type="text" placeholder="__/__/2026">
+    </div>
+    <div class="form-field">
+      <label>Software Utilizado</label>
+      <input type="text" placeholder="Ex: Studio 5000 / FactoryTalk / DeltaV / Node-RED">
+    </div>
+    <div class="form-field">
+      <label>Local de Armazenamento do Backup</label>
+      <input type="text" placeholder="Ex: Servidor X / Pasta Y / Pendrive Z">
+    </div>
+  </div>
+</div>
+
+<!-- SEÇÃO 2: CLASSIFICAÇÃO -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number">2</div>
+    <div class="section-title">Classificação da Mudança</div>
+  </div>
+  <div class="classification-grid">
+    <div class="classification-item" onclick="this.querySelector('input').click()">
+      <div class="icon">&#9888;</div>
+      <div class="label">Segurança /<br>Intertravamento</div>
+      <input type="checkbox" onclick="event.stopPropagation(); toggleClassItem(this)">
+    </div>
+    <div class="classification-item" onclick="this.querySelector('input').click()">
+      <div class="icon">&#9881;</div>
+      <div class="label">Melhoria<br>Operacional</div>
+      <input type="checkbox" onclick="event.stopPropagation(); toggleClassItem(this)">
+    </div>
+    <div class="classification-item" onclick="this.querySelector('input').click()">
+      <div class="icon">&#128295;</div>
+      <div class="label">Manutenção<br>Corretiva</div>
+      <input type="checkbox" onclick="event.stopPropagation(); toggleClassItem(this)">
+    </div>
+    <div class="classification-item" onclick="this.querySelector('input').click()">
+      <div class="icon">&#128279;</div>
+      <div class="label">Integração<br>de Sistemas</div>
+      <input type="checkbox" onclick="event.stopPropagation(); toggleClassItem(this)">
+    </div>
+    <div class="classification-item" onclick="this.querySelector('input').click()">
+      <div class="icon">&#128200;</div>
+      <div class="label">Parametrização /<br>Ajuste</div>
+      <input type="checkbox" onclick="event.stopPropagation(); toggleClassItem(this)">
+    </div>
+    <div class="classification-item" onclick="this.querySelector('input').click()">
+      <div class="icon">&#128187;</div>
+      <div class="label">Desenvolvimento<br>de Lógica</div>
+      <input type="checkbox" onclick="event.stopPropagation(); toggleClassItem(this)">
+    </div>
+  </div>
+  <div class="risk-label">Nível de Risco / Impacto</div>
+  <div class="risk-bar">
+    <label class="risk-level risk-low" onclick="selectRisk(this)">
+      <input type="radio" name="risco" value="Baixo"> &#9679; BAIXO
+    </label>
+    <label class="risk-level risk-medium" onclick="selectRisk(this)">
+      <input type="radio" name="risco" value="Medio"> &#9679; MÉDIO
+    </label>
+    <label class="risk-level risk-high" onclick="selectRisk(this)">
+      <input type="radio" name="risco" value="Alto"> &#9679; ALTO
+    </label>
+    <label class="risk-level risk-critical" onclick="selectRisk(this)">
+      <input type="radio" name="risco" value="Critico"> &#9679; CRÍTICO
+    </label>
+  </div>
+</div>
+
+<!-- SEÇÃO 3: OBJETIVO -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number">3</div>
+    <div class="section-title">Objetivo da Mudança</div>
+  </div>
+  <div class="text-area">
+    <label>Justificativa e Objetivo</label>
+    <textarea placeholder="Descrever de forma clara e objetiva o motivo da mudança, qual problema está sendo resolvido ou qual melhoria está sendo implementada." rows="2" style="min-height:70px;"></textarea>
+  </div>
+</div>
+
+<!-- SEÇÃO 4: DESCRIÇÃO TÉCNICA (campos maiores) -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number">4</div>
+    <div class="section-title">Descrição Técnica da Mudança</div>
+  </div>
+  <div class="text-area">
+    <label>Situação Anterior (ANTES)</label>
+    <textarea placeholder="Descrever como o sistema/equipamento funcionava antes da intervenção. Incluir parâmetros, lógicas, intertravamentos ou configurações existentes." rows="5" style="min-height:70px;"></textarea>
+  </div>
+  <div class="text-area">
+    <label>Alteração Realizada (DEPOIS)</label>
+    <textarea placeholder="Descrever detalhadamente o que foi alterado, incluindo novos parâmetros, lógicas implementadas, intertravamentos adicionados ou configurações modificadas." rows="5" style="min-height:70px;"></textarea>
+  </div>
+</div>
+
+<div class="version-tag">Página 1/2 &mdash; REG10344 MOC Automação v1.0 | Sumitomo Chemical do Brasil</div>
+
+</div><!-- /page-1 -->
+
+<!-- ==================== PÁGINA 2 ==================== -->
+<div class="page page-2">
+
+<div class="header">
+  <img src="data:image/png;base64,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" alt="Sumitomo Chemical" class="header-logo">
+  <div class="header-title">
+    <h1>REG<span>10344</span></h1>
+    <p>Management of Change &mdash; Controle de Mudanças</p>
+  </div>
+</div>
+<div class="moc-id-bar">
+  <input type="text" id="moc-number" placeholder="MOC-AUT-2026-001" value="MOC-AUT-2026-001">
+  <div class="moc-meta">
+    <span>Revisão: <input type="text" id="revisao" placeholder="00" value="00" style="width:30px;"></span>
+    <span>Emissão: <input type="text" id="emissao" placeholder="__/__/2026"></span>
+    <span>Status:
+      <select id="status-moc">
+        <option value="Em Elaboração">Em Elaboração</option>
+        <option value="Em Aprovação" selected>Em Aprovação</option>
+        <option value="Aprovado">Aprovado</option>
+        <option value="Reprovado">Reprovado</option>
+        <option value="Concluído">Concluído</option>
+      </select>
+    </span>
+  </div>
+</div>
+
+<!-- SEÇÃO 4 (cont.): EQUIPAMENTOS -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number">4</div>
+    <div class="section-title">Descrição Técnica — Equipamentos</div>
+  </div>
+  <div class="text-area">
+    <label>Equipamentos / Tags Envolvidos</label>
+    <textarea placeholder="Listar todos os equipamentos, tags, instrumentos e dispositivos envolvidos na mudança." rows="2" style="min-height:70px;"></textarea>
+  </div>
+</div>
+
+<!-- SEÇÃO 5: CHECKLIST -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number">5</div>
+    <div class="section-title">Checklist de Verificação</div>
+  </div>
+  <div class="checklist">
+    <div class="checklist-item"><input type="checkbox"><div class="check-text">Backup do programa realizado antes da alteração</div></div>
+    <div class="checklist-item"><input type="checkbox"><div class="check-text">Alteração testada e validada em ambiente controlado (quando aplicável)</div></div>
+    <div class="checklist-item"><input type="checkbox"><div class="check-text">Intertravamentos de segurança verificados após a mudança</div></div>
+    <div class="checklist-item"><input type="checkbox"><div class="check-text">Operação informada sobre a mudança realizada</div></div>
+    <div class="checklist-item"><input type="checkbox"><div class="check-text">Documentação técnica atualizada (quando aplicável)</div></div>
+    <div class="checklist-item"><input type="checkbox"><div class="check-text">A mudança requer alteração na tabela de controle de processo</div></div>
+    <div class="checklist-item"><input type="checkbox"><div class="check-text">Necessário comunicação ou treinamento sobre a alteração</div></div>
+    <div class="checklist-item"><input type="checkbox"><div class="check-text">Equipamento retornou a operação normal após a mudança</div></div>
+  </div>
+</div>
+
+<!-- SEÇÃO 6: OBSERVAÇÕES -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number">6</div>
+    <div class="section-title">Observações e Recomendações</div>
+  </div>
+  <div class="text-area">
+    <label>Observações Adicionais</label>
+    <textarea placeholder="Incluir informações complementares, recomendações de monitoramento, pontos de atenção ou qualquer observação relevante." rows="2" style="min-height:25px;"></textarea>
+  </div>
+</div>
+
+<!-- SEÇÃO 7: FLUXO DE APROVAÇÃO -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number">7</div>
+    <div class="section-title">Fluxo de Aprovação</div>
+  </div>
+  <div class="approval-grid">
+    <div class="signature-box">
+      <div class="sig-role">Engenharia</div>
+      <div class="sig-line"><input type="text" placeholder="Nome e Assinatura"></div>
+    </div>
+    <div class="signature-box">
+      <div class="sig-role">Coord. Manutenção</div>
+      <div class="sig-line"><input type="text" placeholder="Nome e Assinatura"></div>
+    </div>
+    <div class="signature-box">
+      <div class="sig-role">Gerente de Manufatura</div>
+      <div class="sig-line"><input type="text" placeholder="Nome e Assinatura"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SEÇÃO 8: CONCLUSÃO E ASSINATURAS -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number">8</div>
+    <div class="section-title">Conclusão e Assinaturas</div>
+  </div>
+  <div class="form-grid" style="margin-bottom:6px;">
+    <div class="form-field">
+      <label>Data de Conclusão</label>
+      <input type="text" placeholder="__/__/2026">
+    </div>
+    <div class="form-field">
+      <label>Status Final</label>
+      <select>
+        <option value="">Selecione...</option>
+        <option value="Concluído">Concluído</option>
+        <option value="Concluído com Ressalvas">Concluído com Ressalvas</option>
+        <option value="Cancelado">Cancelado</option>
+      </select>
+    </div>
+  </div>
+  <div class="signature-grid">
+    <div class="signature-box">
+      <div class="sig-role">Responsável Técnico (Execução)</div>
+      <div class="sig-line"><input type="text" value="Diogo Moura — Automação"></div>
+    </div>
+    <div class="signature-box">
+      <div class="sig-role">Supervisor / Coordenador</div>
+      <div class="sig-line"><input type="text" placeholder="Nome e Assinatura"></div>
+    </div>
+  </div>
+  <div style="margin-top:6px;">
+    <div style="font-size:6pt;font-weight:600;color:#E60012;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;">Técnicos Envolvidos na Execução</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;">
+      <div class="signature-box">
+        <div class="sig-role">Técnico 1</div>
+        <div class="sig-line"><input type="text" placeholder="Nome e Assinatura"></div>
+      </div>
+      <div class="signature-box">
+        <div class="sig-role">Técnico 2</div>
+        <div class="sig-line"><input type="text" placeholder="Nome e Assinatura"></div>
+      </div>
+      <div class="signature-box">
+        <div class="sig-role">Técnico 3</div>
+        <div class="sig-line"><input type="text" placeholder="Nome e Assinatura"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="version-tag">Página 2/2 &mdash; REG10344 MOC Automação v1.0 | Sumitomo Chemical do Brasil</div>
+
+</div><!-- /page-2 -->
+
+<script>
+  function toggleClassItem(checkbox) {
+    const item = checkbox.closest('.classification-item');
+    if (checkbox.checked) item.classList.add('selected');
+    else item.classList.remove('selected');
+  }
+
+  function selectRisk(label) {
+    document.querySelectorAll('.risk-level').forEach(el => el.classList.remove('selected'));
+    label.classList.add('selected');
+    label.querySelector('input[type="radio"]').checked = true;
+  }
+
+  function syncPage2() {
+    // Página 2 agora tem campos editáveis independentes, não precisa sincronizar
+  }
+
+  function limparFormulario() {
+    if (!confirm('Tem certeza que deseja limpar todos os campos?')) return;
+    document.querySelectorAll('input[type="text"]').forEach(input => {
+      if (input.id === 'moc-number') input.value = 'MOC-AUT-2026-001';
+      else if (input.id === 'revisao') input.value = '00';
+      else if (input.defaultValue) input.value = input.defaultValue;
+      else input.value = '';
+    });
+    document.querySelectorAll('textarea').forEach(ta => ta.value = '');
+    document.querySelectorAll('select').forEach(sel => sel.selectedIndex = 0);
+    document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+      cb.checked = false;
+      const item = cb.closest('.classification-item');
+      if (item) item.classList.remove('selected');
+    });
+    document.querySelectorAll('input[type="radio"]').forEach(rb => rb.checked = false);
+    document.querySelectorAll('.risk-level').forEach(el => el.classList.remove('selected'));
+  }
+</script>
+
+</body>
+</html>
