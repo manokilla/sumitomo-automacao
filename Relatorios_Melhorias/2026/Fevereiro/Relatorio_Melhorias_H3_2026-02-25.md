@@ -25,9 +25,9 @@ O bit de alarme gerado pela AOI foi integrado à estrutura de interlocks do moto
 
 | Imagem | Descrição |
 |---|---|
-| ![Estrutura de Interlocks](assets_2026-02-25/IMG_4683.jpeg) | Lógica de controle do agitador, mostrando a integração do alarme de subcorrente (`AlmLatched`) na cadeia de intertravamento. |
-| ![Add-On BreakOpr_Motor_v2](assets_2026-02-25/IMG_4682.jpeg) | Detalhe da Add-On `BreakOpr_Motor_v2` aplicada a dois motores, exibindo os parâmetros de status, corrente e contagem de falhas. |
-| ![Mensagem de Alarme](assets_2026-02-25/IMG_4680.jpeg) | Configuração da mensagem de alarme "Subcorrente Motor" que é exibida ao operador no sistema supervisório. |
+| ![Estrutura de Interlocks](assets_H3/IMG_4683.jpeg) | Lógica de controle do agitador, mostrando a integração do alarme de subcorrente (`AlmLatched`) na cadeia de intertravamento. |
+| ![Add-On BreakOpr_Motor_v2](assets_H3/IMG_4682.jpeg) | Detalhe da Add-On `BreakOpr_Motor_v2` aplicada a dois motores, exibindo os parâmetros de status, corrente e contagem de falhas. |
+| ![Mensagem de Alarme](assets_H3/IMG_4680.jpeg) | Configuração da mensagem de alarme "Subcorrente Motor" que é exibida ao operador no sistema supervisório. |
 
 | Item | Descrição |
 |---|---|
